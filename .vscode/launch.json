@@ -1,0 +1,174 @@
+{
+  // launch.json – VS Code Debugger configuration
+  //
+  // Workshop: Multi-Stack Debug Mastery (PyConf 2026)
+  //
+  // This file contains four individual launch configurations and two compound
+  // configurations that combine them into "one-click" debugging workflows.
+  //
+  // Individual configurations:
+  //   1. Python: Remote Attach (debugpy)    ← Part 3
+  //   2. Python: Launch FastAPI directly    ← Part 1 exercise
+  //   3. Chrome: Debug Frontend             ← Part 4
+  //   4. Electron: Debug Main Process       ← Part 4 (bonus)
+  //
+  // Compound configurations:
+  //   5. Full Stack: FastAPI + Chrome       ← Part 4 primary exercise
+  //   6. Full Stack: FastAPI + Electron     ← Part 4 bonus exercise
+
+  "version": "0.2.0",
+  "configurations": [
+    // =========================================================================
+    // 1.  Python – Remote Attach via debugpy
+    //
+    //     Part 3 of the workshop.  Assumes FastAPI is already running under
+    //     debugpy (via the "Start: FastAPI (debugpy on :5678)" task or by
+    //     running the command manually).
+    //
+    //     Key settings:
+    //       • connect.port  – must match the --listen port passed to debugpy
+    //       • pathMappings  – maps the local source tree to the path that the
+    //                         running process sees.  Critical when the process
+    //                         runs inside a container or a virtualenv managed
+    //                         by uv.
+    // =========================================================================
+    {
+      "name": "Python: Remote Attach (debugpy)",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5678
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}/audient-backend",
+          "remoteRoot": "${workspaceFolder}/audient-backend"
+        }
+      ],
+      "justMyCode": true
+    },
+
+    // =========================================================================
+    // 2.  Python – Launch FastAPI directly (Part 1 exercise)
+    //
+    //     The simplest way to run and debug a Python application: VS Code
+    //     launches the process itself using the workspace's Python interpreter.
+    //     Works well for simple scripts but does NOT integrate with `uv run`.
+    //
+    //     Use this configuration to understand the difference between "Launch"
+    //     and "Attach" before moving on to the Remote Attach pattern.
+    // =========================================================================
+    {
+      "name": "Python: Launch FastAPI (direct)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
+      "cwd": "${workspaceFolder}/audient-backend",
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/audient-backend"
+      }
+    },
+
+    // =========================================================================
+    // 3.  Chrome – Debug the Vite frontend
+    //
+    //     Part 4 of the workshop.  VS Code launches a new Chrome instance
+    //     pointed at the Vite dev server and attaches a JavaScript debugger.
+    //     You can set breakpoints in src/main.js directly in VS Code.
+    //
+    //     The "preLaunchTask" ensures the Vite dev server is running before
+    //     Chrome opens.
+    // =========================================================================
+    {
+      "name": "Chrome: Debug Frontend",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/audient-frontend/src",
+      "sourceMapPathOverrides": {
+        "webpack:///./src/*": "${webRoot}/*"
+      },
+      "preLaunchTask": "Start: Vite Dev Server"
+    },
+
+    // =========================================================================
+    // 4.  Electron – Debug the Electron main process (bonus exercise)
+    //
+    //     Launches the Electron main process under Node.js debugging.  Set
+    //     breakpoints inside electron/main.cjs to pause on window creation,
+    //     IPC events, or any other main-process logic.
+    //
+    //     The renderer process is still a browser context; debug it using the
+    //     DevTools that Electron opens automatically in dev mode.
+    // =========================================================================
+    {
+      "name": "Electron: Debug Main Process",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/audient-frontend/node_modules/.bin/electron",
+      "runtimeArgs": ["--remote-debugging-port=9223"],
+      "program": "${workspaceFolder}/audient-frontend/electron/main.cjs",
+      "cwd": "${workspaceFolder}/audient-frontend",
+      "env": {
+        "VITE_DEV_SERVER_URL": "http://localhost:5173"
+      },
+      "preLaunchTask": "Start: Vite Dev Server",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/audient-frontend/electron/**/*.js"]
+    }
+  ],
+
+  // ===========================================================================
+  // Compound configurations – Part 4: The One-Click Workflow
+  //
+  // A "compound" groups multiple configurations under a single name.
+  //
+  // Key settings:
+  //   • configurations – list of configuration names to start together
+  //   • preLaunchTask  – task that must complete before any configuration
+  //                      starts (here we launch both servers in parallel)
+  //   • stopAll        – when you stop one session, ALL sessions stop; ensures
+  //                      a clean exit with no orphan processes
+  // ===========================================================================
+  "compounds": [
+    // =========================================================================
+    // 5.  Full Stack: FastAPI + Chrome  (primary workshop exercise)
+    //
+    //     One click:
+    //       a) Starts FastAPI under debugpy (port 5678) + Vite dev server
+    //       b) Attaches the Python debugger via Remote Attach
+    //       c) Launches Chrome pointed at http://localhost:5173
+    //
+    //     You can now hit breakpoints in BOTH Python (main.py) and JavaScript
+    //     (src/main.js) from the same VS Code window.
+    // =========================================================================
+    {
+      "name": "Full Stack: FastAPI + Chrome",
+      "configurations": [
+        "Python: Remote Attach (debugpy)",
+        "Chrome: Debug Frontend"
+      ],
+      "preLaunchTask": "Start: Full Stack (debugpy + Vite)",
+      "stopAll": true
+    },
+
+    // =========================================================================
+    // 6.  Full Stack: FastAPI + Electron  (bonus exercise)
+    //
+    //     Same as above but uses the Electron main process instead of Chrome.
+    //     Useful when building a desktop app with Electron.
+    // =========================================================================
+    {
+      "name": "Full Stack: FastAPI + Electron",
+      "configurations": [
+        "Python: Remote Attach (debugpy)",
+        "Electron: Debug Main Process"
+      ],
+      "preLaunchTask": "Start: FastAPI (debugpy on :5678)",
+      "stopAll": true
+    }
+  ]
+}

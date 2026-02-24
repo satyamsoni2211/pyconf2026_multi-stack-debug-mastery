@@ -1,0 +1,153 @@
+{
+  // tasks.json – VS Code Task Runner configuration
+  //
+  // Workshop: Multi-Stack Debug Mastery (PyConf 2026)
+  //
+  // These tasks automate the background services that need to be running
+  // before you can attach the debugger.  They are referenced by the compound
+  // launch configurations in launch.json via "preLaunchTask".
+  //
+  // Key concepts demonstrated:
+  //   • isBackground: true     – keep the task alive after VS Code starts it
+  //   • problemMatcher         – regex pattern that tells VS Code when the
+  //                              server is "ready" so dependent tasks / debug
+  //                              sessions can proceed
+  //   • dependsOn              – chain tasks so that starting the full stack
+  //                              is a single action
+
+  "version": "2.0.0",
+  "tasks": [
+    // -------------------------------------------------------------------------
+    // Part 1 – Exercise: run FastAPI without the debugger (normal mode)
+    // -------------------------------------------------------------------------
+    {
+      "label": "Start: FastAPI (normal)",
+      "type": "shell",
+      "command": "uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+      "options": {
+        "cwd": "${workspaceFolder}/audient-backend"
+      },
+      "isBackground": true,
+      // problemMatcher watches stdout/stderr for the "ready" signal so VS Code
+      // knows when to proceed with dependent steps.
+      "problemMatcher": {
+        "owner": "fastapi",
+        "pattern": {
+          "regexp": "^.*$",
+          "message": 0
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Started reloader process.*",
+          "endsPattern": ".*Application startup complete.*"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "backend"
+      }
+    },
+
+    // -------------------------------------------------------------------------
+    // Part 3 – The "Remote Attach" pattern
+    // Run FastAPI under debugpy, listening on port 5678.
+    // The process PAUSES at startup until VS Code attaches (--wait-for-client).
+    // -------------------------------------------------------------------------
+    {
+      "label": "Start: FastAPI (debugpy on :5678)",
+      "type": "shell",
+      "command": "uv run python -m debugpy --listen 5678 --wait-for-client -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+      "options": {
+        "cwd": "${workspaceFolder}/audient-backend"
+      },
+      "isBackground": true,
+      // The beginsPattern fires when uvicorn first starts printing output.
+      // The endsPattern fires once uvicorn finishes loading routes, which is
+      // the signal we use to know it is safe to attach the debugger.
+      "problemMatcher": {
+        "owner": "fastapi-debugpy",
+        "pattern": {
+          "regexp": "^.*$",
+          "message": 0
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Waiting for client.*",
+          "endsPattern": ".*Application startup complete.*"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "backend"
+      }
+    },
+
+    // -------------------------------------------------------------------------
+    // Part 2 / Part 4 – Start the Vite dev server as a background task.
+    // The problemMatcher pattern catches the "VITE vX.Y.Z  ready" line that
+    // Vite prints after the dev server is listening.
+    // -------------------------------------------------------------------------
+    {
+      "label": "Start: Vite Dev Server",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/audient-frontend"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": {
+          "regexp": "^.*$",
+          "message": 0
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*VITE.*",
+          "endsPattern": ".*ready in.*"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "frontend"
+      }
+    },
+
+    // -------------------------------------------------------------------------
+    // Utility: install frontend npm dependencies
+    // -------------------------------------------------------------------------
+    {
+      "label": "Install: Frontend Dependencies",
+      "type": "shell",
+      "command": "npm install",
+      "options": {
+        "cwd": "${workspaceFolder}/audient-frontend"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+
+    // -------------------------------------------------------------------------
+    // Part 4 – Composite "full stack" task
+    // Starts both the FastAPI debugpy process and the Vite dev server in
+    // parallel so a single compound launch configuration can depend on one
+    // task instead of two.
+    // -------------------------------------------------------------------------
+    {
+      "label": "Start: Full Stack (debugpy + Vite)",
+      "dependsOn": [
+        "Start: FastAPI (debugpy on :5678)",
+        "Start: Vite Dev Server"
+      ],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}
