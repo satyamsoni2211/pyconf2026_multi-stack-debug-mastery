@@ -1,0 +1,21 @@
+# Python virtualenvs (created by uv)
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Vite
+node_modules/
+audient-frontend/dist/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
