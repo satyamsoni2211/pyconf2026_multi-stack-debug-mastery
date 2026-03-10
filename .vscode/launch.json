@@ -91,6 +91,7 @@
       "sourceMapPathOverrides": {
         "webpack:///./src/*": "${webRoot}/*"
       },
+      // "runtimeExecutable": "/Applications/Opera.app/Contents/MacOS/Opera",
       "preLaunchTask": "Start: Vite Dev Server"
     },
 

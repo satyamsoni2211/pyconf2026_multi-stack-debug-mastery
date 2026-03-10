@@ -8,7 +8,7 @@ export default defineConfig({
     // hard-code the backend origin.
     proxy: {
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'http://localhost:8081',
         changeOrigin: true,
       },
     },

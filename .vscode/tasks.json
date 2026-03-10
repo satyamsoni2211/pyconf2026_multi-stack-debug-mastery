@@ -57,7 +57,7 @@
     {
       "label": "Start: FastAPI (debugpy on :5678)",
       "type": "shell",
-      "command": "uv run debugpy --listen 5678 --wait-for-client -m fastapi dev --port 8081",
+      "command": "uv run debugpy --listen 5678 -m fastapi dev --port 8081",
       "options": {
         "cwd": "${workspaceFolder}/backend"
       },
