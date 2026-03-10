@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Stack Debug Mastery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Geist:wght@400;800&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <style>
+    /* Presentation Generator - Neobrutalism Styles */
+/* References brand-agency skill for colors and typography */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Geist:wght@400;800&family=Geist+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* Colors from brand-agency */
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-primary: #e85d04;
+  --color-secondary: #ffd60a;
+  --color-accent: #3a86ff;
+  --color-success: #38b000;
+  --color-error: #d62828;
+  --color-muted: #e5e5e5;
+
+  /* Typography */
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-heading: 'Geist', Arial, sans-serif;
+  --font-mono: 'Geist Mono', 'Courier New', monospace;
+
+  /* Shadows */
+  --shadow: 4px 4px 0px 0px #000000;
+  --shadow-sm: 2px 2px 0px 0px #000000;
+  --shadow-lg: 8px 8px 0px 0px #000000;
+
+  /* Slide dimensions */
+  --slide-width: 100vw;
+  --slide-height: 100vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-size: 18px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   SLIDE BASE
+   ============================================ */
+
+.slide {
+  min-height: var(--slide-height);
+  width: var(--slide-width);
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 3px solid var(--color-foreground);
+  scroll-snap-align: start;
+  position: relative;
+}
+
+/* Slide backgrounds */
+.slide--light {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.slide--dark {
+  background: var(--color-foreground);
+  color: var(--color-background);
+}
+
+.slide--primary {
+  background: var(--color-primary);
+  color: var(--color-background);
+}
+
+.slide--secondary {
+  background: var(--color-secondary);
+  color: var(--color-foreground);
+}
+
+.slide--accent {
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
+.slide--success {
+  background: var(--color-success);
+  color: var(--color-background);
+}
+
+.slide--error {
+  background: var(--color-error);
+  color: var(--color-background);
+}
+
+.slide--muted {
+  background: var(--color-muted);
+  color: var(--color-foreground);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  opacity: 0.9;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.highlight {
+  background: var(--color-secondary);
+  padding: 0 0.3rem;
+  color: var(--color-foreground);
+}
+
+/* ============================================
+   CARDS & BOXES
+   ============================================ */
+
+.card {
+  background: var(--color-background);
+  border: 3px solid var(--color-foreground);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.card--primary {
+  border-color: var(--color-primary);
+}
+
+.card--no-shadow {
+  box-shadow: none;
+}
+
+.box {
+  border: 3px solid var(--color-foreground);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+
+code {
+  font-family: var(--font-mono);
+  background: var(--color-foreground);
+  color: var(--color-secondary);
+  padding: 0.2rem 0.4rem;
+  border: 2px solid var(--color-foreground);
+}
+
+pre {
+  font-family: var(--font-mono);
+  background: var(--color-foreground);
+  color: var(--color-background);
+  padding: 1.5rem;
+  border: 3px solid var(--color-foreground);
+  overflow-x: auto;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  box-shadow: var(--shadow);
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Syntax highlighting */
+.code-comment { color: #888; }
+.code-string { color: var(--color-secondary); }
+.code-keyword { color: var(--color-accent); }
+.code-function { color: var(--color-success); }
+.code-number { color: var(--color-error); }
+
+/* ============================================
+   LISTS
+   ============================================ */
+
+ul, ol {
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+li {
+  margin-bottom: 0.75rem;
+}
+
+li::marker {
+  color: var(--color-primary);
+}
+
+/* ============================================
+   TAGS / BADGES
+   ============================================ */
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--color-foreground);
+  margin-right: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tag--primary { background: var(--color-primary); color: white; }
+.tag--secondary { background: var(--color-secondary); color: black; }
+.tag--accent { background: var(--color-accent); color: white; }
+.tag--success { background: var(--color-success); color: white; }
+.tag--error { background: var(--color-error); color: white; }
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-foreground);
+  color: var(--color-secondary);
+  letter-spacing: 0.1em;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  background: var(--color-primary);
+  color: white;
+  border: 3px solid var(--color-foreground);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: var(--color-foreground);
+}
+
+.btn--dark {
+  background: var(--color-foreground);
+  color: var(--color-background);
+}
+
+/* ============================================
+   LAYOUTS
+   ============================================ */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.four-col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.centered {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================
+   TASK CARDS
+   ============================================ */
+
+.task-card {
+  background: var(--color-background);
+  border: 3px solid var(--color-foreground);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  transition: transform 0.1s;
+}
+
+.task-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.task-number {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.task-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+.task-desc {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* ============================================
+   STATS
+   ============================================ */
+
+.stats-row {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: baseline;
+  margin: 2rem 0;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 5rem;
+  line-height: 1;
+  color: inherit;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   ASCII ART
+   ============================================ */
+
+.ascii-box {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1.4;
+  white-space: pre;
+  background: var(--color-muted);
+  padding: 1.5rem;
+  border: 3px solid var(--color-foreground);
+  box-shadow: var(--shadow);
+}
+
+.ascii-border {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: inherit;
+  opacity: 0.5;
+  letter-spacing: 0.2em;
+}
+
+.ascii-decoration {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  opacity: 0.6;
+}
+
+/* ============================================
+   COLOR SWATCHES
+   ============================================ */
+
+.color-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.color-swatch {
+  width: 80px;
+  height: 80px;
+  border: 3px solid var(--color-foreground);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: flex-end;
+  padding: 0.25rem;
+}
+
+.color-swatch span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  background: white;
+  padding: 0.1rem 0.2rem;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--color-muted);
+  border: 2px solid var(--color-foreground);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav-dot:hover,
+.nav-dot.active {
+  background: var(--color-primary);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  margin-top: auto;
+  padding-top: 2rem;
+  opacity: 0.7;
+}
+
+.slide-number {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+/* ============================================
+   SVG & IMAGES
+   ============================================ */
+
+.svg-demo {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.svg-demo svg {
+  filter: drop-shadow(4px 4px 0px #000000);
+}
+
+.image-container {
+  border: 3px solid var(--color-foreground);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================
+   TERMINAL STYLE
+   ============================================ */
+
+.terminal {
+  background: var(--color-foreground);
+  border: 3px solid var(--color-foreground);
+  box-shadow: var(--shadow);
+  font-family: var(--font-mono);
+  color: var(--color-background);
+}
+
+.terminal-header {
+  background: var(--color-muted);
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.terminal-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-btn--close { background: var(--color-error); }
+.terminal-btn--minimize { background: var(--color-secondary); }
+.terminal-btn--maximize { background: var(--color-success); }
+
+.terminal-content {
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.terminal-prompt {
+  color: var(--color-success);
+}
+
+.terminal-output {
+  color: var(--color-muted);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .slide {
+    padding: 40px 60px;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  .two-col {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .slide {
+    padding: 30px 40px;
+  }
+
+  .two-col,
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .stat-value {
+    font-size: 3rem;
+  }
+
+  .nav {
+    display: none;
+  }
+}
+
+/* ============================================
+   PRINT / PDF EXPORT
+   ============================================ */
+
+@media print {
+  .slide {
+    page-break-after: always;
+    min-height: 100vh;
+    border-bottom: none;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+
+    /* Animation initial states */
+    .slide .anim-fade {
+      opacity: 0;
+    }
+    .slide .anim-slide-up {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .slide .anim-slide-left {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    .slide .anim-slide-right {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    .slide .anim-scale {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    .slide .anim-bounce {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    /* Stats counter animation */
+    .stat-value[data-value] {
+      opacity: 0;
+    }
+
+    /* Stagger children animation helper */
+    .anim-stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Hide all animatable elements by default - they will be revealed by JS */
+    .slide .label, .slide .badge, .slide h1, .slide h2, .slide h3,
+    .slide .subtitle, .slide p:not(.stat-label), .slide .task-card, .slide .card, .slide .box,
+    .slide .stat, .slide .stat-value, .slide pre, .slide .terminal,
+    .slide .ascii-box, .slide .ascii-border, .slide ul li, .slide ol li,
+    .slide .tag, .slide .btn, .slide .footer, .slide .slide-number,
+    .slide .two-col > div, .slide .color-swatch, .slide .svg-demo svg {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+        <a href="#slide-1" class="nav-dot active"></a>
+    <a href="#slide-2" class="nav-dot"></a>
+    <a href="#slide-3" class="nav-dot"></a>
+    <a href="#slide-4" class="nav-dot"></a>
+    <a href="#slide-5" class="nav-dot"></a>
+    <a href="#slide-6" class="nav-dot"></a>
+    <a href="#slide-7" class="nav-dot"></a>
+    <a href="#slide-8" class="nav-dot"></a>
+    <a href="#slide-9" class="nav-dot"></a>
+    <a href="#slide-10" class="nav-dot"></a>
+    <a href="#slide-11" class="nav-dot"></a>
+    <a href="#slide-12" class="nav-dot"></a>
+    <a href="#slide-13" class="nav-dot"></a>
+    <a href="#slide-14" class="nav-dot"></a>
+    <a href="#slide-15" class="nav-dot"></a>
+    <a href="#slide-16" class="nav-dot"></a>
+    <a href="#slide-17" class="nav-dot"></a>
+    <a href="#slide-18" class="nav-dot"></a>
+    <a href="#slide-19" class="nav-dot"></a>
+    <a href="#slide-20" class="nav-dot"></a>
+    <a href="#slide-21" class="nav-dot"></a>
+    <a href="#slide-22" class="nav-dot"></a>
+    <a href="#slide-23" class="nav-dot"></a>
+    <a href="#slide-24" class="nav-dot"></a>
+    <a href="#slide-25" class="nav-dot"></a>
+    <a href="#slide-26" class="nav-dot"></a>
+    <a href="#slide-27" class="nav-dot"></a>
+    <a href="#slide-28" class="nav-dot"></a>
+    <a href="#slide-29" class="nav-dot"></a>
+    <a href="#slide-30" class="nav-dot"></a>
+    <a href="#slide-31" class="nav-dot"></a>
+    <a href="#slide-32" class="nav-dot"></a>
+    <a href="#slide-33" class="nav-dot"></a>
+    <a href="#slide-34" class="nav-dot"></a>
+    <a href="#slide-35" class="nav-dot"></a>
+    <a href="#slide-36" class="nav-dot"></a>
+    <a href="#slide-37" class="nav-dot"></a>
+    <a href="#slide-38" class="nav-dot"></a>
+    <a href="#slide-39" class="nav-dot"></a>
+    <a href="#slide-40" class="nav-dot"></a>
+    <a href="#slide-41" class="nav-dot"></a>
+    <a href="#slide-42" class="nav-dot"></a>
+    <a href="#slide-43" class="nav-dot"></a>
+    <a href="#slide-44" class="nav-dot"></a>
+    <a href="#slide-45" class="nav-dot"></a>
+    <a href="#slide-46" class="nav-dot"></a>
+    <a href="#slide-47" class="nav-dot"></a>
+    <a href="#slide-48" class="nav-dot"></a>
+    <a href="#slide-49" class="nav-dot"></a>
+    <a href="#slide-50" class="nav-dot"></a>
+    <a href="#slide-51" class="nav-dot"></a>
+    <a href="#slide-52" class="nav-dot"></a>
+    <a href="#slide-53" class="nav-dot"></a>
+    <a href="#slide-54" class="nav-dot"></a>
+    <a href="#slide-55" class="nav-dot"></a>
+    <a href="#slide-56" class="nav-dot"></a>
+    <a href="#slide-57" class="nav-dot"></a>
+    <a href="#slide-58" class="nav-dot"></a>
+    <a href="#slide-59" class="nav-dot"></a>
+    <a href="#slide-60" class="nav-dot"></a>
+    <a href="#slide-61" class="nav-dot"></a>
+    <a href="#slide-62" class="nav-dot"></a>
+    <a href="#slide-63" class="nav-dot"></a>
+
+  </nav>
+
+  <!-- Slides -->
+  
+  <section id="slide-1" class="slide slide--primary">
+    <div class="label">WORKSHOP</div>
+    <h1>Multi-Stack Debug Mastery</h1>
+    <p class="subtitle">Orchestrating VS Code for Python + Frontend Development</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">1 / 63</div>
+  </section>
+
+
+  <section id="slide-2" class="slide slide--light">
+    <div class="label">INTRODUCTION</div>
+    <h2>The Debugging Challenge</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">In the era of microservices and full-stack applications, debugging in isolation is rarely enough.</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Multiple terminal tabs for FastAPI, Vite, Electron</li>
+      <li>Context-switch fatigue slows down development</li>
+      <li>No unified debugging experience</li>
+      <li>Manual process management = wasted time</li>
+    </ul>
+    
+    <div class="slide-number">2 / 63</div>
+  </section>
+
+
+  <section id="slide-3" class="slide slide--secondary centered">
+    <div class="ascii-border" style="font-size: 2rem; margin-bottom: 1rem;">╔══════════════════════════════════════╗</div>
+    <blockquote style="font-size: 2rem; font-style: italic; max-width: 800px; line-height: 1.4;">
+      "The best debugging tool is still careful thought, coupled with well-designed code."
+    </blockquote>
+    <div class="ascii-border" style="font-size: 2rem; margin-top: 1rem;">╚══════════════════════════════════════╝</div>
+    <p style="margin-top: 2rem; font-family: var(--font-mono);">— Brian Kernighan</p>
+    <div class="slide-number">3 / 63</div>
+  </section>
+
+
+  <section id="slide-4" class="slide slide--light centered">
+    
+    <h2>Workshop Timeline</h2>
+    <div class="stats-row">
+      
+      <div class="stat">
+        <div class="stat-value">30</div>
+        <div class="stat-label">min</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">45</div>
+        <div class="stat-label">min</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">60</div>
+        <div class="stat-label">min</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">45</div>
+        <div class="stat-label">min</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">60</div>
+        <div class="stat-label">min</div>
+      </div>
+    </div>
+    <p class="subtitle" style="margin-top: 2rem;">Intro → Part 1 → Part 2 → Part 3 → Part 4</p>
+    <div class="slide-number">4 / 63</div>
+  </section>
+
+
+  <section id="slide-5" class="slide slide--light">
+    <div class="label">LEARNING OBJECTIVES</div>
+    <h2>What You'll Master</h2>
+    <p style="font-size: 1.2rem; max-width: 700px;">By the end of this workshop, you'll be able to:</p>
+    <div class="task-grid">
+      
+      <div class="task-card">
+        <div class="task-number">01</div>
+        <div class="task-title">Python Debug Configs</div>
+        <div class="task-desc">Configure launch.json for files, modules, pytest</div>
+        
+        <div>
+          <span class="tag tag--">VS Code</span><span class="tag tag--">Python</span>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-number">02</div>
+        <div class="task-title">Frontend Debug</div>
+        <div class="task-desc">Debug JavaScript/TypeScript in Chrome and Electron</div>
+        
+        <div>
+          <span class="tag tag--">Chrome</span><span class="tag tag--">DevTools</span>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-number">03</div>
+        <div class="task-title">Debug Controls</div>
+        <div class="task-desc">Master breakpoints, stepping, and debugging actions</div>
+        
+        <div>
+          <span class="tag tag--">Controls</span><span class="tag tag--">F5/F10/F11</span>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-number">04</div>
+        <div class="task-title">Variable Viewer</div>
+        <div class="task-desc">Inspect locals, globals, and watch expressions</div>
+        
+        <div>
+          <span class="tag tag--">Variables</span><span class="tag tag--">Watch</span>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-number">05</div>
+        <div class="task-title">Orchestrate Tasks</div>
+        <div class="task-desc">Automate services with tasks.json</div>
+        
+        <div>
+          <span class="tag tag--">Tasks</span><span class="tag tag--">Automation</span>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-number">06</div>
+        <div class="task-title">Remote Attach</div>
+        <div class="task-desc">Debug Python apps on specific ports with debugpy</div>
+        
+        <div>
+          <span class="tag tag--">debugpy</span><span class="tag tag--">Attach</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">5 / 63</div>
+  </section>
+
+
+  <section id="slide-6" class="slide slide--accent">
+    <div class="label">BASICS</div>
+    <h1>Python Debugging Setup</h1>
+    <p class="subtitle">launch.json Configuration</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">6 / 63</div>
+  </section>
+
+
+  <section id="slide-7" class="slide slide--light">
+    <div class="label">PYTHON DEBUGGING</div>
+    <h2>Getting Started with Python Debugging</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">VS Code provides powerful Python debugging through the Python extension:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Install Python extension by Microsoft</li>
+      <li>Create launch.json in .vscode folder</li>
+      <li>Set breakpoints by clicking in the gutter</li>
+      <li>Press F5 to start debugging</li>
+    </ul>
+    
+    <div class="slide-number">7 / 63</div>
+  </section>
+
+
+  <section id="slide-8" class="slide slide--light">
+    <div class="label">DEBUG TYPES</div>
+    <h2>Python Debug Configuration Types</h2>
+    
+    <div class="task-grid">
+      
+      <div class="task-card">
+        <div class="task-number">1</div>
+        <div class="task-title">Python File</div>
+        <div class="task-desc">Debug a standalone Python script</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">2</div>
+        <div class="task-title">Python Module</div>
+        <div class="task-desc">Debug a module: python -m module</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">3</div>
+        <div class="task-title">Pytest</div>
+        <div class="task-desc">Debug pytest tests</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">4</div>
+        <div class="task-title">Django</div>
+        <div class="task-desc">Debug Django applications</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">5</div>
+        <div class="task-title">Flask</div>
+        <div class="task-desc">Debug Flask applications</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">6</div>
+        <div class="task-title">Remote Attach</div>
+        <div class="task-desc">Attach to running Python process</div>
+        
+      </div>
+    </div>
+    <div class="slide-number">8 / 63</div>
+  </section>
+
+
+  <section id="slide-9" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">PYTHON FILE</div>
+    <h2>Debug a Python File</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Python: Debug File&quot;,
+  &quot;type&quot;: &quot;debugpy&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;program&quot;: &quot;${workspaceFolder}/main.py&quot;,
+  &quot;console&quot;: &quot;integratedTerminal&quot;,
+  &quot;justMyCode&quot;: <span class="code-keyword">true</span>,
+  &quot;env&quot;: {
+    &quot;DEBUG&quot;: &quot;<span class="code-keyword">true</span>&quot;
+  }
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">launch.json</span><span class="tag tag--">Python File</span>
+    </div>
+    <div class="slide-number">9 / 63</div>
+  </section>
+
+
+  <section id="slide-10" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">PYTHON MODULE</div>
+    <h2>Debug a Python Module</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Python: Module&quot;,
+  &quot;type&quot;: &quot;debugpy&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;module&quot;: &quot;uvicorn.main&quot;,
+  &quot;args&quot;: [
+    &quot;app.main:app&quot;,
+    &quot;--reload&quot;
+  ],
+  &quot;cwd&quot;: &quot;${workspaceFolder}/backend&quot;,
+  &quot;console&quot;: &quot;integratedTerminal&quot;,
+  &quot;justMyCode&quot;: <span class="code-keyword">true</span>
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">module</span><span class="tag tag--">uvicorn</span>
+    </div>
+    <div class="slide-number">10 / 63</div>
+  </section>
+
+
+  <section id="slide-11" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">PYTEST DEBUG</div>
+    <h2>Debug pytest Tests</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Python: Pytest&quot;,
+  &quot;type&quot;: &quot;debugpy&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;module&quot;: &quot;pytest&quot;,
+  &quot;args&quot;: [
+    &quot;tests/&quot;,
+    &quot;-v&quot;,
+    &quot;-s&quot;
+  ],
+  &quot;console&quot;: &quot;integratedTerminal&quot;,
+  &quot;justMyCode&quot;: <span class="code-keyword">false</span>,
+  &quot;env&quot;: {
+    &quot;PYTHONPATH&quot;: &quot;${workspaceFolder}&quot;
+  }
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">pytest</span><span class="tag tag--">Testing</span>
+    </div>
+    <div class="slide-number">11 / 63</div>
+  </section>
+
+
+  <section id="slide-12" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">DJANGO DEBUG</div>
+    <h2>Debug Django Application</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Python: Django&quot;,
+  &quot;type&quot;: &quot;debugpy&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;module&quot;: &quot;django&quot;,
+  &quot;args&quot;: [
+    &quot;runserver&quot;,
+    &quot;--noreload&quot;
+  ],
+  &quot;django&quot;: <span class="code-keyword">true</span>,
+  &quot;justMyCode&quot;: <span class="code-keyword">true</span>,
+  &quot;env&quot;: {
+    &quot;DJANGO_SETTINGS_MODULE&quot;: &quot;mysite.settings&quot;
+  }
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Django</span><span class="tag tag--">Web Framework</span>
+    </div>
+    <div class="slide-number">12 / 63</div>
+  </section>
+
+
+  <section id="slide-13" class="slide slide--accent">
+    <div class="label">FRONTEND</div>
+    <h1>Frontend Debugging</h1>
+    <p class="subtitle">JavaScript & Browser Debugging</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">13 / 63</div>
+  </section>
+
+
+  <section id="slide-14" class="slide slide--light">
+    <div class="label">FRONTEND DEBUG</div>
+    <h2>Frontend Debugging Options</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">VS Code supports multiple frontend debugging scenarios:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Chrome/Edge debugging with built-in launch config</li>
+      <li>Firefox debugging with extension</li>
+      <li>Node.js debugging for backend JavaScript</li>
+      <li>Electron debugging for desktop apps</li>
+      <li>Attach to running browser sessions</li>
+    </ul>
+    
+    <div class="slide-number">14 / 63</div>
+  </section>
+
+
+  <section id="slide-15" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">CHROME LAUNCH</div>
+    <h2>Launch Chrome for Debugging</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Chrome: Launch&quot;,
+  &quot;type&quot;: &quot;chrome&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;url&quot;: &quot;http:<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>//localhost:<span class="code-number">5173</span>&quot;,</span>
+  &quot;webRoot&quot;: &quot;${workspaceFolder}/src&quot;,
+  &quot;sourceMaps&quot;: <span class="code-keyword">true</span>,
+  &quot;preLaunchTask&quot;: &quot;npm: dev&quot;,
+  &quot;runtimeArgs&quot;: [
+    &quot;--disable-web-security&quot;
+  ]
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Chrome</span><span class="tag tag--">Launch</span>
+    </div>
+    <div class="slide-number">15 / 63</div>
+  </section>
+
+
+  <section id="slide-16" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">CHROME ATTACH</div>
+    <h2>Attach to Running Chrome</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Chrome: Attach&quot;,
+  &quot;type&quot;: &quot;chrome&quot;,
+  &quot;request&quot;: &quot;attach&quot;,
+  &quot;port&quot;: <span class="code-number">9222</span>,
+  &quot;url&quot;: &quot;http:<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>//localhost:<span class="code-number">5173</span>&quot;,</span>
+  &quot;webRoot&quot;: &quot;${workspaceFolder}/src&quot;,
+  &quot;sourceMaps&quot;: <span class="code-keyword">true</span>
+}
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Start Chrome with remote debugging:</span>
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// chrome --remote-debugging-port=<span class="code-number">9222</span></span></code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Chrome</span><span class="tag tag--">Attach</span>
+    </div>
+    <div class="slide-number">16 / 63</div>
+  </section>
+
+
+  <section id="slide-17" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">NODE DEBUG</div>
+    <h2>Debug Node.js Application</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Node: Launch&quot;,
+  &quot;type&quot;: &quot;node&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;program&quot;: &quot;${workspaceFolder}/server/index.js&quot;,
+  &quot;console&quot;: &quot;integratedTerminal&quot;,
+  &quot;runtimeExecutable&quot;: &quot;node&quot;,
+  &quot;skipFiles&quot;: [&quot;&lt;node_internals&gt;/**&quot;]
+}
+
+{
+  &quot;name&quot;: &quot;Node: Nodemon&quot;,
+  &quot;type&quot;: &quot;node&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;runtimeExecutable&quot;: &quot;nodemon&quot;,
+  &quot;program&quot;: &quot;${workspaceFolder}/server/index.js&quot;,
+  &quot;console&quot;: &quot;integratedTerminal&quot;
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Node.js</span><span class="tag tag--">Server</span>
+    </div>
+    <div class="slide-number">17 / 63</div>
+  </section>
+
+
+  <section id="slide-18" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">ELECTRON DEBUG</div>
+    <h2>Debug Electron Application</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Electron: Main&quot;,
+  &quot;type&quot;: &quot;node&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;runtimeExecutable&quot;: &quot;${workspaceFolder}/node_modules/.bin/electron&quot;,
+  &quot;program&quot;: &quot;${workspaceFolder}/main.js&quot;,
+  &quot;console&quot;: &quot;integratedTerminal&quot;
+}
+
+{
+  &quot;name&quot;: &quot;Electron: Renderer&quot;,
+  &quot;type&quot;: &quot;chrome&quot;,
+  &quot;request&quot;: &quot;launch&quot;,
+  &quot;url&quot;: &quot;file:<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>//${workspaceFolder}/index.html&quot;,</span>
+  &quot;webRoot&quot;: &quot;${workspaceFolder}&quot;
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Electron</span><span class="tag tag--">Desktop</span>
+    </div>
+    <div class="slide-number">18 / 63</div>
+  </section>
+
+
+  <section id="slide-19" class="slide slide--accent">
+    <div class="label">CONTROLS</div>
+    <h1>Debugging Controls</h1>
+    <p class="subtitle">Mastering the Debugger</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">19 / 63</div>
+  </section>
+
+
+  <section id="slide-20" class="slide slide--light">
+    <div class="label">KEYBOARD SHORTCUTS</div>
+    <h2>Debug Control Keys</h2>
+    
+    <div class="task-grid">
+      
+      <div class="task-card">
+        <div class="task-number">F5</div>
+        <div class="task-title">Continue</div>
+        <div class="task-desc">Run to next breakpoint</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">F9</div>
+        <div class="task-title">Toggle BP</div>
+        <div class="task-desc">Enable/disable breakpoint</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">F10</div>
+        <div class="task-title">Step Over</div>
+        <div class="task-desc">Execute current line</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">F11</div>
+        <div class="task-title">Step Into</div>
+        <div class="task-desc">Enter function call</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">Shift+F11</div>
+        <div class="task-title">Step Out</div>
+        <div class="task-desc">Exit current function</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">Shift+F5</div>
+        <div class="task-title">Stop</div>
+        <div class="task-desc">Stop debugging session</div>
+        
+      </div>
+    </div>
+    <div class="slide-number">20 / 63</div>
+  </section>
+
+
+  <section id="slide-21" class="slide slide--light">
+    <div class="label">BREAKPOINT TYPES</div>
+    <h2>Types of Breakpoints</h2>
+    <div class="two-col" style="margin-top: 2rem;">
+      <div>
+        <h3>Standard Breakpoint</h3>
+        
+        
+        <ul>
+          <li>Pause at specific line</li>
+          <li>Click in gutter (left margin)</li>
+          <li>Red circle icon</li>
+          <li>Conditional variants available</li>
+        </ul>
+        
+      </div>
+      <div>
+        <h3>Special Breakpoints</h3>
+        
+        
+        <ul>
+          <li>Exception Breakpoint - on error</li>
+          <li>Function Breakpoint - named function</li>
+          <li>Conditional - expression true</li>
+          <li>Hit Count - after N hits</li>
+        </ul>
+        
+        
+      </div>
+    </div>
+    <div class="slide-number">21 / 63</div>
+  </section>
+
+
+  <section id="slide-22" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">CONDITIONAL BP</div>
+    <h2>Conditional Breakpoints</h2>
+    
+    <pre style="max-width: 900px;"><code><span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Right-click on breakpoint → Edit Condition</span>
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Condition: only pause when <span class="code-keyword">true</span></span>
+user.is_admin == <span class="code-keyword">true</span>
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Hit Count: pause after N hits</span>
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Format: &quot;&gt; <span class="code-number">5</span>&quot; (greater than <span class="code-number">5</span>)</span>
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>//        &quot;== <span class="code-number">10</span>&quot; (equals <span class="code-number">10</span>)</span>
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>//        &quot;% <span class="code-number">3</span> == <span class="code-number">0</span>&quot; (every 3rd hit)</span>
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Log Message: print without pausing</span>
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Format: &quot;Log: user = &quot; + user.name</span></code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Conditional</span><span class="tag tag--">Breakpoints</span>
+    </div>
+    <div class="slide-number">22 / 63</div>
+  </section>
+
+
+  <section id="slide-23" class="slide slide--light">
+    <div class="label">DEBUG ACTIONS</div>
+    <h2>Debug Toolbar Actions</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">The debug toolbar provides essential controls:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Continue/Pause (F5) - Run or pause execution</li>
+      <li>Step Over (F10) - Execute line, skip function details</li>
+      <li>Step Into (F11) - Enter function to debug</li>
+      <li>Step Out (Shift+F11) - Exit current function</li>
+      <li>Restart (Ctrl+Shift+F5) - Restart debug session</li>
+      <li>Stop (Shift+F5) - End debugging</li>
+    </ul>
+    
+    <div class="slide-number">23 / 63</div>
+  </section>
+
+
+  <section id="slide-24" class="slide slide--accent">
+    <div class="label">VARIABLES</div>
+    <h1>Variable Viewer</h1>
+    <p class="subtitle">Inspecting Application State</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">24 / 63</div>
+  </section>
+
+
+  <section id="slide-25" class="slide slide--light">
+    <div class="label">VARIABLES PANEL</div>
+    <h2>Understanding the Variables Panel</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">The Variables panel shows current scope state:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Locals - Variables in current function</li>
+      <li>Globals - Module-level variables</li>
+      <li>Registers - CPU register values</li>
+      <li>Expand objects to see properties</li>
+      <li>Right-click to copy values</li>
+    </ul>
+    
+    <div class="slide-number">25 / 63</div>
+  </section>
+
+
+  <section id="slide-26" class="slide slide--light">
+    <div class="label">WATCH EXPRESSIONS</div>
+    <h2>Using Watch Expressions</h2>
+    <div class="two-col" style="margin-top: 2rem;">
+      <div>
+        <h3>Add to Watch</h3>
+        
+        
+        <ul>
+          <li>Right-click variable → Add to Watch</li>
+          <li>Click + in Watch panel</li>
+          <li>Type any valid expression</li>
+          <li>Updates in real-time</li>
+        </ul>
+        
+      </div>
+      <div>
+        <h3>Watch Examples</h3>
+        
+        
+        <ul>
+          <li>user.name - Object property</li>
+          <li>len(items) - Function call</li>
+          <li>result['key'] - Dictionary access</li>
+          <li>type(x).__name__ - Type inspection</li>
+        </ul>
+        
+        
+      </div>
+    </div>
+    <div class="slide-number">26 / 63</div>
+  </section>
+
+
+  <section id="slide-27" class="slide slide--light">
+    <div class="label">CALL STACK</div>
+    <h2>The Call Stack Panel</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">The call stack shows execution history:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Displays function call chain</li>
+      <li>Click any frame to inspect state</li>
+      <li>Right-click to jump to code</li>
+      <li>Gray frames = external code</li>
+      <li>Expand to see thread info</li>
+    </ul>
+    
+    <div class="slide-number">27 / 63</div>
+  </section>
+
+
+  <section id="slide-28" class="slide slide--light">
+    <div class="label">DEBUG CONSOLE</div>
+    <h2>Debug Console</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">Execute code in the debug context:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Access via View → Debug Console</li>
+      <li>Evaluate expressions in scope</li>
+      <li>Call functions with test args</li>
+      <li>Import modules for testing</li>
+      <li>Temporary debugging code</li>
+    </ul>
+    
+    <div class="slide-number">28 / 63</div>
+  </section>
+
+
+  <section id="slide-29" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">DEBUG CONSOLE</div>
+    <h2>Debug Console Examples</h2>
+    
+    <pre style="max-width: 900px;"><code><span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// In Debug Console:</span>
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Inspect variables</span>
+user
+user.name
+user.is_active
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Execute code</span>
+print(f&quot;User: {user.name}&quot;)
+result = calculate_total(items)
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Test <span <span class="code-keyword">class</span>="code-keyword">function</span> calls</span>
+response = api.get_user(user_id)
+response.json()
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// Modify values (careful!)</span>
+count = <span class="code-number">100</span></code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Debug Console</span><span class="tag tag--">REPL</span>
+    </div>
+    <div class="slide-number">29 / 63</div>
+  </section>
+
+
+  <section id="slide-30" class="slide slide--accent">
+    <div class="label">PART 1</div>
+    <h1>The Modern Python Environment</h1>
+    <p class="subtitle">45 minutes</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">30 / 63</div>
+  </section>
+
+
+  <section id="slide-31" class="slide slide--light">
+    <div class="label">PART 1</div>
+    <h2>Multi-Directory Project Structure</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">Real-world projects span multiple directories:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>audient-backend/ - FastAPI server (Python)</li>
+      <li>audient-frontend/ - Vite + Electron (JavaScript)</li>
+      <li>Shared configurations and dependencies</li>
+      <li>Each with its own package manager</li>
+    </ul>
+    
+    <div class="slide-number">31 / 63</div>
+  </section>
+
+
+  <section id="slide-32" class="slide slide--muted">
+    <div class="label">PROJECT STRUCTURE</div>
+    <h2>Typical Monorepo Layout</h2>
+    <div class="terminal" style="max-width: 800px; margin-top: 2rem;">
+      <div class="terminal-header">
+        <span class="terminal-btn terminal-btn--close"></span>
+        <span class="terminal-btn terminal-btn--minimize"></span>
+        <span class="terminal-btn terminal-btn--maximize"></span>
+      </div>
+      <div class="terminal-content">
+        <div style="color: #888;"># Project root structure</div>
+        <div><span class="terminal-prompt">$ </span>ls -la myproject/</div>
+        <div class="terminal-output">drwxr-xr-x  myproject/
+-rw-r--r--  package.json
+-rw-r--r--  pyproject.toml</div>
+        <div><span class="terminal-prompt">$ </span>ls myproject/audient-backend/</div>
+        <div class="terminal-output">main.py  app/  uv.lock  pyproject.toml</div>
+        <div><span class="terminal-prompt">$ </span>ls myproject/audient-frontend/</div>
+        <div class="terminal-output">src/  package.json  vite.config.ts</div>
+      </div>
+    </div>
+    
+    <div class="slide-number">32 / 63</div>
+  </section>
+
+
+  <section id="slide-33" class="slide slide--light">
+    <div class="label">UV - MODERN PYTHON</div>
+    <h2>Why uv?</h2>
+    <div class="two-col" style="margin-top: 2rem;">
+      <div>
+        <h3>Traditional pip</h3>
+        
+        
+        <ul>
+          <li>Slow package resolution</li>
+          <li>No integrated virtualenv</li>
+          <li>Separate tool for environments</li>
+          <li>Large memory footprint</li>
+        </ul>
+        
+      </div>
+      <div>
+        <h3>uv (Ultra Fast)</h3>
+        
+        
+        <ul>
+          <li>10-100x faster than pip</li>
+          <li>Built-in venv management</li>
+          <li>Single binary installation</li>
+          <li>Rust-powered performance</li>
+        </ul>
+        
+        
+      </div>
+    </div>
+    <div class="slide-number">33 / 63</div>
+  </section>
+
+
+  <section id="slide-34" class="slide slide--muted">
+    <div class="label">UV SETUP</div>
+    <h2>Installing and Using uv</h2>
+    <div class="terminal" style="max-width: 800px; margin-top: 2rem;">
+      <div class="terminal-header">
+        <span class="terminal-btn terminal-btn--close"></span>
+        <span class="terminal-btn terminal-btn--minimize"></span>
+        <span class="terminal-btn terminal-btn--maximize"></span>
+      </div>
+      <div class="terminal-content">
+        <div><span class="terminal-prompt">$ </span># Install uv (macOS/Linux)</div>
+        <div class="terminal-output">curl -LsSf https://astral.sh/uv/install.sh | sh</div>
+        <div><span class="terminal-prompt">$ </span># Run Python with uv</div>
+        <div class="terminal-output">uv run python main.py</div>
+        <div><span class="terminal-prompt">$ </span># Run FastAPI with uv (auto-installs deps)</div>
+        <div class="terminal-output">uv run uvicorn main:app --reload</div>
+        <div><span class="terminal-prompt">$ </span># Create virtual environment</div>
+        <div class="terminal-output">uv venv &amp;&amp; uv sync</div>
+      </div>
+    </div>
+    
+    <div class="slide-number">34 / 63</div>
+  </section>
+
+
+  <section id="slide-35" class="slide slide--light">
+    <div class="label">EXERCISE 1</div>
+    <h2>Exercise: Create a Basic Task</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">Let's create a VS Code task to run FastAPI via uv run:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Open Command Palette → Tasks: Configure Task</li>
+      <li>Create a new tasks.json for a npm script style command</li>
+      <li>Configure: uv run uvicorn main:app --reload</li>
+      <li>Test running it with Tasks: Run Task</li>
+    </ul>
+    
+    <div class="slide-number">35 / 63</div>
+  </section>
+
+
+  <section id="slide-36" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">TASKS.JSON EXAMPLE</div>
+    <h2>Basic FastAPI Task</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;version&quot;: &quot;<span class="code-number">2</span>.<span class="code-number">0</span>.<span class="code-number">0</span>&quot;,
+  &quot;tasks&quot;: [
+    {
+      &quot;label&quot;: &quot;Run FastAPI Server&quot;,
+      &quot;type&quot;: &quot;shell&quot;,
+      &quot;command&quot;: &quot;uv run uvicorn main:app --reload&quot;,
+      &quot;problemMatcher&quot;: [],
+      &quot;isBackground&quot;: <span class="code-keyword">false</span>,
+      &quot;presentation&quot;: {
+        &quot;reveal&quot;: &quot;always&quot;,
+        &quot;panel&quot;: &quot;<span class="code-keyword">new</span>&quot;
+      }
+    }
+  ]
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">tasks.json</span><span class="tag tag--">FastAPI</span>
+    </div>
+    <div class="slide-number">36 / 63</div>
+  </section>
+
+
+  <section id="slide-37" class="slide slide--accent">
+    <div class="label">PART 2</div>
+    <h1>Bridging the Gap with Tasks</h1>
+    <p class="subtitle">60 minutes</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">37 / 63</div>
+  </section>
+
+
+  <section id="slide-38" class="slide slide--light">
+    <div class="label">TASKS.JSON</div>
+    <h2>Anatomy of tasks.json</h2>
+    
+    <div class="task-grid">
+      
+      <div class="task-card">
+        <div class="task-number">1</div>
+        <div class="task-title">label</div>
+        <div class="task-desc">Unique identifier for the task</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">2</div>
+        <div class="task-title">type</div>
+        <div class="task-desc">shell, process, or npm</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">3</div>
+        <div class="task-title">command</div>
+        <div class="task-desc">The actual command to execute</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">4</div>
+        <div class="task-title">problemMatcher</div>
+        <div class="task-desc">Parse output for errors</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">5</div>
+        <div class="task-title">isBackground</div>
+        <div class="task-desc">Keep running for dev servers</div>
+        
+      </div>
+    </div>
+    <div class="slide-number">38 / 63</div>
+  </section>
+
+
+  <section id="slide-39" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">BACKGROUND TASKS</div>
+    <h2>Using isBackground: true</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;label&quot;: &quot;Start Vite Dev Server&quot;,
+  &quot;type&quot;: &quot;shell&quot;,
+  &quot;command&quot;: &quot;npm run dev&quot;,
+  &quot;isBackground&quot;: <span class="code-keyword">true</span>,
+  &quot;problemMatcher&quot;: {
+    &quot;owner&quot;: &quot;custom&quot;,
+    &quot;pattern&quot;: {
+      &quot;regexp&quot;: &quot;^VITE&quot;
+    },
+    &quot;background&quot;: {
+      &quot;activeOnStart&quot;: <span class="code-keyword">true</span>,
+      &quot;beginsPattern&quot;: &quot;^.*VITE.*{{slides}}quot;,
+      &quot;endsPattern&quot;: &quot;Local:\s+https:<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>//localhost:\\d+&quot;</span>
+    }
+  }
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">isBackground</span><span class="tag tag--">Vite</span>
+    </div>
+    <div class="slide-number">39 / 63</div>
+  </section>
+
+
+  <section id="slide-40" class="slide slide--light">
+    <div class="label">PROBLEM MATCHERS</div>
+    <h2>What Are Problem Matchers?</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">Problem matchers parse CLI output to:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Detect when services are ready (not just started)</li>
+      <li>Parse error messages for the Problems panel</li>
+      <li>Enable intelligent task chaining</li>
+      <li>Provide visual feedback in VS Code</li>
+    </ul>
+    
+    <div class="slide-number">40 / 63</div>
+  </section>
+
+
+  <section id="slide-41" class="slide slide--muted">
+    <div class="label">PROBLEM MATCHER SIGNALS</div>
+    <h2>Common Ready Signals</h2>
+    <div class="terminal" style="max-width: 800px; margin-top: 2rem;">
+      <div class="terminal-header">
+        <span class="terminal-btn terminal-btn--close"></span>
+        <span class="terminal-btn terminal-btn--minimize"></span>
+        <span class="terminal-btn terminal-btn--maximize"></span>
+      </div>
+      <div class="terminal-content">
+        <div style="color: #888;"># FastAPI/Uvicorn</div>
+        <div class="terminal-output">Application startup complete: Uvicorn running on http://0.0.0.0:8000</div>
+        <div style="color: #888;"># Vite</div>
+        <div class="terminal-output">Local: http://localhost:5173/   Network: use --host to expose</div>
+        <div style="color: #888;"># Django</div>
+        <div class="terminal-output">Starting development server at http://127.0.0.1:8000/</div>
+        <div style="color: #888;"># Flask</div>
+        <div class="terminal-output">Running on http://127.0.0.1:5000</div>
+      </div>
+    </div>
+    
+    <div class="slide-number">41 / 63</div>
+  </section>
+
+
+  <section id="slide-42" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">REGEX PATTERNS</div>
+    <h2>Crafting Regex for ProblemMatcher</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;problemMatcher&quot;: {
+    &quot;owner&quot;: &quot;fastapi&quot;,
+    &quot;fileLocation&quot;: &quot;relative&quot;,
+    &quot;pattern&quot;: {
+      &quot;regexp&quot;: &quot;^Application startup complete: (.+){{slides}}quot;,
+      &quot;message&quot;: <span class="code-number">1</span>
+    },
+    &quot;background&quot;: {
+      &quot;activeOnStart&quot;: <span class="code-keyword">true</span>,
+      &quot;beginsPattern&quot;: &quot;^.*Uvicorn.*{{slides}}quot;,
+      &quot;endsPattern&quot;: &quot;Application startup complete&quot;
+    }
+  }
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Regex</span><span class="tag tag--">Pattern</span>
+    </div>
+    <div class="slide-number">42 / 63</div>
+  </section>
+
+
+  <section id="slide-43" class="slide slide--light">
+    <div class="label">EXERCISE 2</div>
+    <h2>Exercise: Background Task with Matcher</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">Create a background task that:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Runs FastAPI with uv run</li>
+      <li>Waits for 'Application startup complete' signal</li>
+      <li>Reports ready status in VS Code</li>
+      <li>Practice with regex pattern matching</li>
+    </ul>
+    
+    <div class="slide-number">43 / 63</div>
+  </section>
+
+
+  <section id="slide-44" class="slide slide--light">
+    <div class="label">TASK CHAINING</div>
+    <h2>Task Dependencies</h2>
+    <div class="two-col" style="margin-top: 2rem;">
+      <div class="card" style="border-color: #d62828;">
+        <h3 style="color: #d62828;">Without Dependencies</h3>
+        <p style="margin-top: 0.5rem;">- Manual start order</p><p style="margin-top: 0.5rem;">- Guess when services are ready</p><p style="margin-top: 0.5rem;">- Race conditions</p><p style="margin-top: 0.5rem;">- Time wasted waiting</p>
+      </div>
+      <div class="card" style="border-color: #38b000;">
+        <h3 style="color: #38b000;">With Dependencies</h3>
+        <p style="margin-top: 0.5rem;">+ Automatic startup sequence</p><p style="margin-top: 0.5rem;">+ Problem matcher ensures ready</p><p style="margin-top: 0.5rem;">+ No race conditions</p><p style="margin-top: 0.5rem;">+ One-click full stack start</p>
+      </div>
+    </div>
+    <div class="slide-number">44 / 63</div>
+  </section>
+
+
+  <section id="slide-45" class="slide slide--accent">
+    <div class="label">PART 3</div>
+    <h1>The 'Remote Attach' Pattern</h1>
+    <p class="subtitle">45 minutes</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">45 / 63</div>
+  </section>
+
+
+  <section id="slide-46" class="slide slide--light">
+    <div class="label">ATTACH VS LAUNCH</div>
+    <h2>Why Attach > Launch?</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">For complex managed environments, Attach is superior:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Debug processes you didn't start</li>
+      <li>Works with uv, docker, docker-compose</li>
+      <li>No need to modify your run commands</li>
+      <li>Attach to already-running processes</li>
+      <li>Debug production-like environments</li>
+    </ul>
+    
+    <div class="slide-number">46 / 63</div>
+  </section>
+
+
+  <section id="slide-47" class="slide slide--muted">
+    <div class="label">DEBUGPY SETUP</div>
+    <h2>Starting FastAPI with debugpy</h2>
+    <div class="terminal" style="max-width: 800px; margin-top: 2rem;">
+      <div class="terminal-header">
+        <span class="terminal-btn terminal-btn--close"></span>
+        <span class="terminal-btn terminal-btn--minimize"></span>
+        <span class="terminal-btn terminal-btn--maximize"></span>
+      </div>
+      <div class="terminal-content">
+        <div><span class="terminal-prompt">$ </span># Install debugpy</div>
+        <div class="terminal-output">uv add --dev debugpy</div>
+        <div><span class="terminal-prompt">$ </span># Run with debugpy listening on port 5678</div>
+        <div class="terminal-output">uv run python -m debugpy --listen 0.0.0.0:5678 -m uvicorn main:app --reload</div>
+        <div style="color: #888;"># # Alternative: Add to your code</div>
+        <div><span class="terminal-prompt">$ </span>import debugpy</div>
+        <div class="terminal-output">debugpy.listen((&quot;0.0.0.0&quot;, 5678))</div>
+      </div>
+    </div>
+    
+    <div class="slide-number">47 / 63</div>
+  </section>
+
+
+  <section id="slide-48" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">LAUNCH.JSON</div>
+    <h2>Remote Attach Configuration</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;name&quot;: &quot;Python: Remote Attach&quot;,
+  &quot;type&quot;: &quot;debugpy&quot;,
+  &quot;request&quot;: &quot;attach&quot;,
+  &quot;connect&quot;: {
+    &quot;host&quot;: &quot;localhost&quot;,
+    &quot;port&quot;: <span class="code-number">5678</span>
+  },
+  &quot;pathMappings&quot;: [
+    {
+      &quot;localRoot&quot;: &quot;${workspaceFolder}/audient-backend&quot;,
+      &quot;remoteRoot&quot;: &quot;/app&quot;
+    }
+  ],
+  &quot;justMyCode&quot;: <span class="code-keyword">true</span>
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">debugpy</span><span class="tag tag--">Attach</span>
+    </div>
+    <div class="slide-number">48 / 63</div>
+  </section>
+
+
+  <section id="slide-49" class="slide slide--light">
+    <div class="label">PATH MAPPINGS</div>
+    <h2>Understanding pathMappings</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">pathMappings bridges local and remote file systems:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>localRoot: Your local code location</li>
+      <li>remoteRoot: Where code runs (container, VM)</li>
+      <li>VS Code maps breakpoints correctly</li>
+      <li>Essential for Docker/remote development</li>
+    </ul>
+    
+    <div class="slide-number">49 / 63</div>
+  </section>
+
+
+  <section id="slide-50" class="slide slide--light">
+    <div class="label">PORT SELECTION</div>
+    <h2>Choosing the Right Port</h2>
+    <div class="two-col" style="margin-top: 2rem;">
+      <div>
+        <h3>Common Debug Ports</h3>
+        
+        
+        <ul>
+          <li>5678 - debugpy default</li>
+          <li>9229 - Node.js debug</li>
+          <li>5858 - Legacy Python</li>
+          <li>4000-4999 - Custom range</li>
+        </ul>
+        
+      </div>
+      <div>
+        <h3>Best Practices</h3>
+        
+        
+        <ul>
+          <li>Use consistent port across team</li>
+          <li>Document in README</li>
+          <li>Avoid port conflicts</li>
+          <li>Consider environment variables</li>
+        </ul>
+        
+        
+      </div>
+    </div>
+    <div class="slide-number">50 / 63</div>
+  </section>
+
+
+  <section id="slide-51" class="slide slide--light">
+    <div class="label">EXERCISE 3</div>
+    <h2>Exercise: Remote Attach Setup</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">Configure remote attach debugging:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Start FastAPI with debugpy on port 5678</li>
+      <li>Create launch.json with attach config</li>
+      <li>Set up pathMappings for your project</li>
+      <li>Attach and set a breakpoint</li>
+    </ul>
+    
+    <div class="slide-number">51 / 63</div>
+  </section>
+
+
+  <section id="slide-52" class="slide slide--accent">
+    <div class="label">PART 4</div>
+    <h1>The One-Click Workflow</h1>
+    <p class="subtitle">60 minutes</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">52 / 63</div>
+  </section>
+
+
+  <section id="slide-53" class="slide slide--light">
+    <div class="label">COMPOUND CONFIGURATIONS</div>
+    <h2>What Are Compounds?</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">Compounds let you launch multiple debug configurations at once:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Group Python and JavaScript debuggers</li>
+      <li>Start all services with one click</li>
+      <li>Unified debugging experience</li>
+      <li>Single stop terminates all</li>
+    </ul>
+    
+    <div class="slide-number">53 / 63</div>
+  </section>
+
+
+  <section id="slide-54" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">COMPOUND EXAMPLE</div>
+    <h2>Creating a Compound Config</h2>
+    
+    <pre style="max-width: 900px;"><code>{
+  &quot;compounds&quot;: [
+    {
+      &quot;name&quot;: &quot;Full Stack Debug&quot;,
+      &quot;configurations&quot;: [
+        &quot;Python: FastAPI Attach&quot;,
+        &quot;Chrome: Launch Frontend&quot;
+      ],
+      &quot;stopAll&quot;: <span class="code-keyword">true</span>
+    }
+  ],
+  &quot;configurations&quot;: [
+    {
+      &quot;name&quot;: &quot;Python: FastAPI Attach&quot;,
+      &quot;type&quot;: &quot;debugpy&quot;,
+      &quot;request&quot;: &quot;attach&quot;,
+      &quot;connect&quot;: { &quot;port&quot;: <span class="code-number">5678</span> },
+      &quot;preLaunchTask&quot;: &quot;Start FastAPI&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Chrome: Launch Frontend&quot;,
+      &quot;type&quot;: &quot;chrome&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;url&quot;: &quot;http:<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>//localhost:<span class="code-number">5173</span>&quot;,</span>
+      &quot;webRoot&quot;: &quot;${workspaceFolder}/audient-frontend&quot;
+    }
+  ]
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Compounds</span><span class="tag tag--">Full Stack</span>
+    </div>
+    <div class="slide-number">54 / 63</div>
+  </section>
+
+
+  <section id="slide-55" class="slide slide--light">
+    <div class="label">PRELAUNCH TASK</div>
+    <h2>The preLaunchTask Property</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">preLaunchTask runs a task before debugging starts:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Start backend services first</li>
+      <li>Wait for services to be ready</li>
+      <li>Chain multiple tasks together</li>
+      <li>Ensure dependencies are running</li>
+    </ul>
+    
+    <div class="slide-number">55 / 63</div>
+  </section>
+
+
+  <section id="slide-56" class="slide slide--dark">
+    <div class="label" style="color: var(--color-success);">FULL WORKFLOW</div>
+    <h2>Complete One-Click Setup</h2>
+    
+    <pre style="max-width: 900px;"><code><span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// tasks.json</span>
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;label&quot;: &quot;Start FastAPI&quot;,
+      &quot;type&quot;: &quot;shell&quot;,
+      &quot;command&quot;: &quot;uv run python -m debugpy...&quot;,
+      &quot;isBackground&quot;: <span class="code-keyword">true</span>,
+      &quot;problemMatcher&quot;: {
+        &quot;endsPattern&quot;: &quot;Application startup complete&quot;
+      }
+    },
+    {
+      &quot;label&quot;: &quot;Start Vite&quot;,
+      &quot;type&quot;: &quot;shell&quot;, 
+      &quot;command&quot;: &quot;npm run dev&quot;,
+      &quot;isBackground&quot;: <span class="code-keyword">true</span>,
+      &quot;problemMatcher&quot;: {
+        &quot;endsPattern&quot;: &quot;Local:.*localhost&quot;
+      }
+    }
+  ]
+}
+
+<span <span class="code-keyword">class</span>=<span <span class="code-keyword">class</span>="code-string">"code-comment"</span>>// launch.json - compound</span>
+{
+  &quot;compounds&quot;: [
+    {
+      &quot;name&quot;: &quot;Debug Full Stack&quot;,
+      &quot;configurations&quot;: [
+        &quot;Python: FastAPI Attach&quot;,
+        &quot;JavaScript: Chrome&quot;
+      ],
+      &quot;stopAll&quot;: <span class="code-keyword">true</span>
+    }
+  ]
+}</code></pre>
+    
+    <div style="margin-top: 1.5rem;">
+      <span class="tag tag--">Complete</span><span class="tag tag--">Workflow</span>
+    </div>
+    <div class="slide-number">56 / 63</div>
+  </section>
+
+
+  <section id="slide-57" class="slide slide--light">
+    <div class="label">STOPALL</div>
+    <h2>Understanding stopAll: true</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">When you stop debugging:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>stopAll: true terminates ALL processes in compound</li>
+      <li>Clean exit for all services</li>
+      <li>No orphaned processes</li>
+      <li>Essential for background tasks</li>
+    </ul>
+    
+    <div class="slide-number">57 / 63</div>
+  </section>
+
+
+  <section id="slide-58" class="slide slide--light">
+    <div class="label">BEFORE VS AFTER</div>
+    <h2>The Transformation</h2>
+    <div class="two-col" style="margin-top: 2rem;">
+      <div class="card" style="border-color: #d62828;">
+        <h3 style="color: #d62828;">Before</h3>
+        <p style="margin-top: 0.5rem;">- 3+ terminal tabs open</p><p style="margin-top: 0.5rem;">- Manual start order</p><p style="margin-top: 0.5rem;">- Guess when ready</p><p style="margin-top: 0.5rem;">- Separate debug sessions</p><p style="margin-top: 0.5rem;">- Hard to reproduce issues</p>
+      </div>
+      <div class="card" style="border-color: #38b000;">
+        <h3 style="color: #38b000;">After</h3>
+        <p style="margin-top: 0.5rem;">+ One click starts all</p><p style="margin-top: 0.5rem;">+ Automatic ordering</p><p style="margin-top: 0.5rem;">+ Problem matchers ensure ready</p><p style="margin-top: 0.5rem;">+ Unified debugger</p><p style="margin-top: 0.5rem;">+ Full stack breakpoints</p>
+      </div>
+    </div>
+    <div class="slide-number">58 / 63</div>
+  </section>
+
+
+  <section id="slide-59" class="slide slide--light">
+    <div class="label">EXERCISE 4</div>
+    <h2>Exercise: Build Your One-Click Workflow</h2>
+    <p style="font-size: 1.3rem; max-width: 800px;">Create a complete debugging workflow:</p>
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Configure background tasks for FastAPI + Vite</li>
+      <li>Set up problem matchers for both</li>
+      <li>Create attach configs for both</li>
+      <li>Build a compound with stopAll: true</li>
+      <li>Test the one-click experience</li>
+    </ul>
+    
+    <div class="slide-number">59 / 63</div>
+  </section>
+
+
+  <section id="slide-60" class="slide slide--light">
+    <div class="label">SUMMARY</div>
+    <h2>What We Covered</h2>
+    
+    <div class="task-grid">
+      
+      <div class="task-card">
+        <div class="task-number">1</div>
+        <div class="task-title">Basics</div>
+        <div class="task-desc">Python file, module, pytest, Django configs</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">2</div>
+        <div class="task-title">Frontend</div>
+        <div class="task-desc">Chrome, Node.js, Electron debugging</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">3</div>
+        <div class="task-title">Controls</div>
+        <div class="task-desc">F5/F10/F11, breakpoints, debug actions</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">4</div>
+        <div class="task-title">Variables</div>
+        <div class="task-desc">Watch, call stack, debug console</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">5</div>
+        <div class="task-title">Part 1</div>
+        <div class="task-desc">Modern Python env with uv</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">6</div>
+        <div class="task-title">Part 2</div>
+        <div class="task-desc">tasks.json, isBackground, problemMatchers</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">7</div>
+        <div class="task-title">Part 3</div>
+        <div class="task-desc">Remote Attach with debugpy</div>
+        
+      </div>
+      <div class="task-card">
+        <div class="task-number">8</div>
+        <div class="task-title">Part 4</div>
+        <div class="task-desc">Compounds, preLaunchTask, stopAll</div>
+        
+      </div>
+    </div>
+    <div class="slide-number">60 / 63</div>
+  </section>
+
+
+  <section id="slide-61" class="slide slide--light">
+    <div class="label">NEXT STEPS</div>
+    <h2>Continue Your Journey</h2>
+    
+    
+    <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
+      <li>Apply these patterns to your projects</li>
+      <li>Explore Docker debugging with pathMappings</li>
+      <li>Try debugging with docker-compose</li>
+      <li>Share configurations with your team</li>
+      <li>Add to your project templates</li>
+    </ul>
+    
+    <div class="slide-number">61 / 63</div>
+  </section>
+
+
+  <section id="slide-62" class="slide slide--secondary centered">
+    <div class="ascii-border" style="font-size: 2rem; margin-bottom: 1rem;">╔══════════════════════════════════════╗</div>
+    <blockquote style="font-size: 2rem; font-style: italic; max-width: 800px; line-height: 1.4;">
+      "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are by definition not smart enough to debug it."
+    </blockquote>
+    <div class="ascii-border" style="font-size: 2rem; margin-top: 1rem;">╚══════════════════════════════════════╝</div>
+    <p style="margin-top: 2rem; font-family: var(--font-mono);">— Brian Kernighan</p>
+    <div class="slide-number">62 / 63</div>
+  </section>
+
+
+  <section id="slide-63" class="slide slide--primary">
+    <div class="label">THANK YOU</div>
+    <h1>Multi-Stack Debug Mastery</h1>
+    <p class="subtitle">Questions? | @satyamsoni2211 | PyCon 2026</p>
+    <div class="footer">PyCon 2026</div>
+    <div class="slide-number">63 / 63</div>
+  </section>
+
+  <script>
+    // Animation configurations for different element types
+    const animationConfigs = {
+      // Labels and badges - quick fade
+      label: {
+        selector: '.label, .badge',
+        animation: {
+          opacity: [0, 1],
+          translateY: [-10, 0],
+          duration: 400,
+          easing: 'easeOutQuad'
+        },
+        delay: 100
+      },
+      // Main headings - slide up with bounce
+      h1: {
+        selector: 'h1',
+        animation: {
+          opacity: [0, 1],
+          translateY: [60, 0],
+          duration: 800,
+          easing: 'easeOutExpo'
+        },
+        delay: 200
+      },
+      // Secondary headings
+      h2: {
+        selector: 'h2',
+        animation: {
+          opacity: [0, 1],
+          translateY: [40, 0],
+          duration: 700,
+          easing: 'easeOutExpo'
+        },
+        delay: 300
+      },
+      // Subtitles and body text
+      subtitle: {
+        selector: '.subtitle, p:not(.task-desc):not(.stat-label)',
+        animation: {
+          opacity: [0, 1],
+          translateY: [30, 0],
+          duration: 600,
+          easing: 'easeOutQuad'
+        },
+        delay: 500
+      },
+      // Cards - staggered scale up
+      cards: {
+        selector: '.task-card, .card, .box',
+        animation: {
+          opacity: [0, 1],
+          scale: [0.9, 1],
+          translateY: [20, 0],
+          duration: 500,
+          easing: 'easeOutBack'
+        },
+        delay: 600,
+        stagger: 100
+      },
+      // Stats - counter effect
+      stats: {
+        selector: '.stat',
+        animation: {
+          opacity: [0, 1],
+          scale: [0.5, 1],
+          duration: 600,
+          easing: 'easeOutBack'
+        },
+        delay: 400,
+        stagger: 150
+      },
+      // Code blocks - slide in
+      code: {
+        selector: 'pre, .terminal',
+        animation: {
+          opacity: [0, 1],
+          translateX: [-30, 0],
+          duration: 600,
+          easing: 'easeOutQuad'
+        },
+        delay: 700
+      },
+      // ASCII boxes
+      ascii: {
+        selector: '.ascii-box, .ascii-border',
+        animation: {
+          opacity: [0, 1],
+          duration: 800,
+          easing: 'easeInOutQuad'
+        },
+        delay: 500
+      },
+      // Lists - staggered items
+      listItems: {
+        selector: 'ul li, ol li',
+        animation: {
+          opacity: [0, 1],
+          translateX: [-20, 0],
+          duration: 400,
+          easing: 'easeOutQuad'
+        },
+        delay: 700,
+        stagger: 80
+      },
+      // Tags
+      tags: {
+        selector: '.tag',
+        animation: {
+          opacity: [0, 1],
+          scale: [0.8, 1],
+          duration: 300,
+          easing: 'easeOutQuad'
+        },
+        delay: 900,
+        stagger: 50
+      },
+      // Buttons
+      buttons: {
+        selector: '.btn',
+        animation: {
+          opacity: [0, 1],
+          translateY: [20, 0],
+          duration: 500,
+          easing: 'easeOutBack'
+        },
+        delay: 1000
+      },
+      // Footer
+      footer: {
+        selector: '.footer, .slide-number',
+        animation: {
+          opacity: [0, 0.7],
+          duration: 600,
+          easing: 'easeOutQuad'
+        },
+        delay: 1200
+      },
+      // Two-col children
+      columns: {
+        selector: '.two-col > div',
+        animation: {
+          opacity: [0, 1],
+          translateX: (el, i) => [i === 0 ? -30 : 30, 0],
+          duration: 600,
+          easing: 'easeOutQuad'
+        },
+        delay: 500,
+        stagger: 200
+      },
+      // Color swatches
+      swatches: {
+        selector: '.color-swatch',
+        animation: {
+          opacity: [0, 1],
+          scale: [0.8, 1],
+          duration: 400,
+          easing: 'easeOutBack'
+        },
+        delay: 800,
+        stagger: 80
+      },
+      // SVG demos
+      svgs: {
+        selector: '.svg-demo svg',
+        animation: {
+          opacity: [0, 1],
+          rotate: [-10, 0],
+          scale: [0.9, 1],
+          duration: 500,
+          easing: 'easeOutBack'
+        },
+        delay: 700,
+        stagger: 100
+      }
+    };
+
+    // Animate a slide when it becomes visible
+    function animateSlide(slide) {
+      // Skip if already animated
+      if (slide.dataset.animated === 'true') return;
+      slide.dataset.animated = 'true';
+
+      // Run animations for each element type
+      Object.values(animationConfigs).forEach(config => {
+        const elements = slide.querySelectorAll(config.selector);
+        if (elements.length === 0) return;
+
+        anime({
+          targets: elements,
+          ...config.animation,
+          delay: config.stagger
+            ? anime.stagger(config.stagger, { start: config.delay })
+            : config.delay
+        });
+      });
+
+      // Special: animate stat counters
+      const statValues = slide.querySelectorAll('.stat-value');
+      statValues.forEach((el, i) => {
+        const finalValue = el.textContent;
+        const isNumber = /^\d+$/.test(finalValue);
+
+        if (isNumber) {
+          el.textContent = '0';
+          anime({
+            targets: el,
+            innerHTML: [0, parseInt(finalValue)],
+            round: 1,
+            duration: 1500,
+            delay: 400 + (i * 150),
+            easing: 'easeOutExpo'
+          });
+        }
+
+        anime({
+          targets: el,
+          opacity: [0, 1],
+          scale: [0.5, 1],
+          duration: 600,
+          delay: 400 + (i * 150),
+          easing: 'easeOutBack'
+        });
+      });
+    }
+
+    // Reset slide animations (for re-triggering)
+    function resetSlideAnimations(slide) {
+      slide.dataset.animated = 'false';
+
+      // Reset all animatable elements
+      Object.values(animationConfigs).forEach(config => {
+        const elements = slide.querySelectorAll(config.selector);
+        elements.forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = '';
+        });
+      });
+    }
+
+    // Navigation highlighting and animation triggering
+    const dots = document.querySelectorAll('.nav-dot');
+    const slides = document.querySelectorAll('.slide');
+
+    // Only use IntersectionObserver for interactive mode (not video recording)
+    if (!window.videoRecordingMode) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            dots.forEach(dot => {
+              dot.classList.toggle('active', dot.getAttribute('href') === '#' + id);
+            });
+
+            // Trigger animations when slide becomes visible
+            animateSlide(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      slides.forEach(slide => observer.observe(slide));
+
+      // Animate first slide immediately
+      setTimeout(() => {
+        if (slides[0]) animateSlide(slides[0]);
+      }, 300);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const currentSlide = [...slides].findIndex(s => {
+        const rect = s.getBoundingClientRect();
+        return rect.top >= -100 && rect.top <= 100;
+      });
+
+      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        if (currentSlide < slides.length - 1) {
+          slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        if (currentSlide > 0) {
+          slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      if (e.key === 'Home') {
+        e.preventDefault();
+        slides[0].scrollIntoView({ behavior: 'smooth' });
+      }
+
+      if (e.key === 'End') {
+        e.preventDefault();
+        slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // 'R' to replay current slide animations
+      if (e.key === 'r' || e.key === 'R') {
+        if (currentSlide >= 0) {
+          resetSlideAnimations(slides[currentSlide]);
+          setTimeout(() => animateSlide(slides[currentSlide]), 100);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

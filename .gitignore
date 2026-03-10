@@ -19,3 +19,4 @@ audient-frontend/dist/
 Thumbs.db
 *.swp
 *.swo
+/.agents/skills/presentation-generator/package-lock.json
