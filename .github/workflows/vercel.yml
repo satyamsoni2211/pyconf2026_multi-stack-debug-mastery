@@ -1,9 +1,9 @@
-name: Vercel Production Deployment
+name: Vercel Development Deployment
 
 on:
   push:
     branches:
-      - main
+      - development
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}

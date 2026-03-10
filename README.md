@@ -162,7 +162,7 @@ The workshop presentation is available online:
 
 ### Deployment
 
-The presentation is automatically deployed to Vercel via GitHub Actions on every push to the `main` branch. The deployment uses the Production environment.
+The presentation is automatically deployed to Vercel via GitHub Actions on every push to the `development` branch. The deployment uses the Development environment.
 
 To deploy manually:
 
