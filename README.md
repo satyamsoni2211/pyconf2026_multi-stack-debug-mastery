@@ -24,10 +24,6 @@ for your FastAPI + Vite/Electron stack.
 
 ```
 .
-├── .github/
-│   └── workflows/
-│       └── vercel.yml      ← GitHub Actions for Vercel deployment
-│
 ├── .vscode/
 │   ├── launch.json         ← Debug configurations (Remote Attach, Chrome, Electron, Compounds)
 │   └── tasks.json          ← Background service tasks (FastAPI, Vite, composite)
@@ -47,17 +43,6 @@ for your FastAPI + Vite/Electron stack.
 │   ├── index.html
 │   ├── vite.config.js
 │   └── package.json
-│
-├── docs/
-│   ├── part-1-modern-python-env.md
-│   ├── part-2-tasks.md
-│   ├── part-3-remote-attach.md
-│   ├── part-4-one-click-workflow.md
-│   └── tasks-guide.md
-│
-├── multi-stack-debug-mastery.html  ← Presentation (interactive HTML)
-├── presentation-content.json       ← Presentation content (JSON)
-└── vercel.json                    ← Vercel configuration
 ```
 
 ---
@@ -150,28 +135,3 @@ Additional resources:
 The workshop presentation is available online:
 
 **Live URL:** [https://pyconf2026.satyamsoni.com](https://pyconf2026.satyamsoni.com)
-
-### Presentation Files
-
-| File | Description |
-|------|-------------|
-| `multi-stack-debug-mastery.html` | Main presentation (interactive HTML) |
-| `presentation-content.json` | Presentation content in JSON format |
-| `.github/workflows/vercel.yml` | GitHub Actions workflow for deployment |
-| `vercel.json` | Vercel configuration |
-
-### Deployment
-
-The presentation is automatically deployed to Vercel via GitHub Actions on every push to the `main` branch. The deployment uses the Production environment.
-
-To deploy manually:
-
-```bash
-npm i -g vercel
-vercel --prod
-```
-
-The deployment uses the Production environment in GitHub. Ensure the following secrets are configured:
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
