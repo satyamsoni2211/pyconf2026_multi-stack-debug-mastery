@@ -1,0 +1,123 @@
+/**
+ * Compound Debug Configurations
+ *
+ * Part 4 of the workshop:
+ * - Full Stack debugging (Python + JavaScript)
+ * - One-click workflow with compound configurations
+ * - Automatic service startup with preLaunchTask
+ *
+ * Usage: Copy these to .vscode/launch.json or include via "compounds" property
+ */
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    // These reference configurations from python/ and frontend/ folders
+    // Include them here for compound to work properly
+    {
+      "name": "Python: Remote Attach (debugpy)",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5678
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}/audient-backend",
+          "remoteRoot": "${workspaceFolder}/audient-backend"
+        }
+      ],
+      "justMyCode": true
+    },
+    {
+      "name": "Chrome: Debug Frontend",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/audient-frontend/src",
+      "preLaunchTask": "Start: Vite Dev Server"
+    },
+    {
+      "name": "Electron: Debug Main Process",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/audient-frontend/node_modules/.bin/electron",
+      "program": "${workspaceFolder}/audient-frontend/electron/main.cjs",
+      "cwd": "${workspaceFolder}/audient-frontend",
+      "preLaunchTask": "Start: Vite Dev Server"
+    }
+  ],
+  "compounds": [
+    // =========================================================================
+    // 1. Full Stack: FastAPI + Chrome (Primary workshop compound)
+    //
+    // One click starts everything:
+    //   a) Starts FastAPI under debugpy (via preLaunchTask)
+    //   b) Attaches Python debugger via Remote Attach
+    //   c) Launches Chrome at http://localhost:5173
+    //
+    // Result: Breakpoints work in BOTH Python and JavaScript files.
+    //
+    // Key settings:
+    //   • configurations – list of config names to start together
+    //   • preLaunchTask  – task that runs BEFORE debuggers attach
+    //   • stopAll        – stopping one stops ALL sessions
+    // =========================================================================
+    {
+      "name": "Full Stack: FastAPI + Chrome",
+      "configurations": [
+        "Python: Remote Attach (debugpy)",
+        "Chrome: Debug Frontend"
+      ],
+      "preLaunchTask": "Start: Full Stack (debugpy + Vite)",
+      "stopAll": true
+    },
+
+    // =========================================================================
+    // 2. Full Stack: FastAPI + Electron (Bonus)
+    //
+    // Same as above but uses Electron main process instead of Chrome.
+    // Useful for desktop app development.
+    // =========================================================================
+    {
+      "name": "Full Stack: FastAPI + Electron",
+      "configurations": [
+        "Python: Remote Attach (debugpy)",
+        "Electron: Debug Main Process"
+      ],
+      "preLaunchTask": "Start: FastAPI (debugpy on :5678)",
+      "stopAll": true
+    },
+
+    // =========================================================================
+    // 3. Frontend Only: Vite + Chrome
+    //
+    // Debug frontend without backend.
+    // Good for frontend-only development.
+    // =========================================================================
+    {
+      "name": "Frontend Only: Vite + Chrome",
+      "configurations": [
+        "Chrome: Debug Frontend"
+      ],
+      "preLaunchTask": "Start: Vite Dev Server",
+      "stopAll": true
+    },
+
+    // =========================================================================
+    // 4. Backend Only: FastAPI with debugpy
+    //
+    // Debug Python backend only.
+    // Start FastAPI manually or with task first.
+    // =========================================================================
+    {
+      "name": "Backend Only: FastAPI",
+      "configurations": [
+        "Python: Remote Attach (debugpy)"
+      ],
+      "preLaunchTask": "Start: FastAPI (debugpy on :5678)",
+      "stopAll": true
+    }
+  ]
+}

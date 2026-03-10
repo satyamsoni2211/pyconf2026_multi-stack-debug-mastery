@@ -5,7 +5,7 @@ description = "FastAPI backend for the Audient multi-stack debugging workshop"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "fastapi>=0.111.0",
+    "fastapi[standard]>=0.111.0",
     "uvicorn[standard]>=0.30.0",
     "debugpy>=1.8.0",
 ]

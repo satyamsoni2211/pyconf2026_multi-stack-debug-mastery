@@ -37,7 +37,6 @@
       "type": "debugpy",
       "request": "attach",
       "connect": {
-        "host": "localhost",
         "port": 5678
       },
       "pathMappings": [
@@ -63,9 +62,10 @@
       "name": "Python: Launch FastAPI (direct)",
       "type": "debugpy",
       "request": "launch",
-      "module": "uvicorn",
-      "args": ["main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
+      "module": "fastapi",
+      "args": ["dev", "--host", "0.0.0.0", "--port", "8080"],
       "cwd": "${workspaceFolder}/audient-backend",
+      "python": "${workspaceFolder}/audient-backend/.venv/bin/python3",
       "justMyCode": true,
       "env": {
         "PYTHONPATH": "${workspaceFolder}/audient-backend"

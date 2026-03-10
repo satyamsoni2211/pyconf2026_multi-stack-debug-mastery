@@ -23,7 +23,7 @@
     {
       "label": "Start: FastAPI (normal)",
       "type": "shell",
-      "command": "uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+      "command": "uv run fastapi dev --port 8080",
       "options": {
         "cwd": "${workspaceFolder}/audient-backend"
       },
@@ -57,7 +57,7 @@
     {
       "label": "Start: FastAPI (debugpy on :5678)",
       "type": "shell",
-      "command": "uv run python -m debugpy --listen 5678 --wait-for-client -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+      "command": "uv run debugpy --listen 5678 --wait-for-client -m fastapi dev --port 8081",
       "options": {
         "cwd": "${workspaceFolder}/audient-backend"
       },
@@ -73,7 +73,7 @@
         },
         "background": {
           "activeOnStart": true,
-          "beginsPattern": ".*Waiting for client.*",
+          "beginsPattern": ".*FastAPI\\s+Starting development server.*",
           "endsPattern": ".*Application startup complete.*"
         }
       },
@@ -97,7 +97,9 @@
         "cwd": "${workspaceFolder}/audient-frontend"
       },
       "isBackground": true,
-      "problemMatcher": {
+      "problemMatcher": [
+        "$tsc-watch",
+        {
         "owner": "vite",
         "pattern": {
           "regexp": "^.*$",
@@ -109,11 +111,12 @@
           "endsPattern": ".*ready in.*"
         }
       },
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated",
-        "group": "frontend"
-      }
+    ],
+    "presentation": {
+      "reveal": "always",
+      "panel": "dedicated",
+      "group": "frontend"
+    }
     },
 
     // -------------------------------------------------------------------------

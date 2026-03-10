@@ -33,15 +33,16 @@
     {
       "type": "stats",
       "bg": "light",
-      "title": "Workshop Timeline",
+      "title": "Workshop Timeline (90 minutes)",
       "items": [
-        { "value": "30", "label": "min" },
-        { "value": "45", "label": "min" },
-        { "value": "60", "label": "min" },
-        { "value": "45", "label": "min" },
-        { "value": "60", "label": "min" }
+        { "value": "5", "label": "min" },
+        { "value": "15", "label": "min" },
+        { "value": "15", "label": "min" },
+        { "value": "15", "label": "min" },
+        { "value": "20", "label": "min" },
+        { "value": "20", "label": "min" }
       ],
-      "subtitle": "Intro → Part 1 → Part 2 → Part 3 → Part 4"
+      "subtitle": "Intro → Part 1 → Part 2 → Part 3 → Part 4 → Q&A"
     },
     {
       "type": "grid",
@@ -111,10 +112,10 @@
       "label": "PYTHON MODULE",
       "title": "Debug a Python Module",
       "language": "json",
-      "code": "{\n  \"name\": \"Python: Module\",\n  \"type\": \"debugpy\",\n  \"request\": \"launch\",\n  \"module\": \"uvicorn.main\",\n  \"args\": [\n    \"app.main:app\",\n    \"--reload\"\n  ],\n  \"cwd\": \"${workspaceFolder}/backend\",\n  \"console\": \"integratedTerminal\",\n  \"justMyCode\": true\n}",
+      "code": "{\n  \"name\": \"Python: Module\",\n  \"type\": \"debugpy\",\n  \"request\": \"launch\",\n  \"module\": \"fastapi\",\n  \"args\": [\n    \"dev\",\n    \"--port\", \"8080\"\n  ],\n  \"cwd\": \"${workspaceFolder}/backend\",\n  \"console\": \"integratedTerminal\",\n  \"justMyCode\": true\n}",
       "tags": [
         { "text": "module" },
-        { "text": "uvicorn" }
+        { "text": "fastapi" }
       ]
     },
     {
@@ -181,7 +182,7 @@
       "label": "CHROME ATTACH",
       "title": "Attach to Running Chrome",
       "language": "json",
-      "code": "{\n  \"name\": \"Chrome: Attach\",\n  \"type\": \"chrome\",\n  \"request\": \"attach\",\n  \"port\": 9222,\n  \"url\": \"http://localhost:5173\",\n  \"webRoot\": \"${workspaceFolder}/src\",\n  \"sourceMaps\": true\n}\n\n// Start Chrome with remote debugging:\n// chrome --remote-debugging-port=9222",
+      "code": "{\n  \"name\": \"Chrome: Attach\",\n  \"type\": \"chrome\",\n  \"request\": \"attach\",\n  \"port\": 9222,\n  \"url\": \"http://localhost:5173\",\n  \"webRoot\": \"${workspaceFolder}/src\",\n  \"sourceMaps\": true\n}\n\n/* Start Chrome with remote debugging:\n   chrome --remote-debugging-port=9222 */",
       "tags": [
         { "text": "Chrome" },
         { "text": "Attach" }
@@ -263,7 +264,7 @@
       "label": "CONDITIONAL BP",
       "title": "Conditional Breakpoints",
       "language": "json",
-      "code": "// Right-click on breakpoint → Edit Condition\n\n// Condition: only pause when true\nuser.is_admin == true\n\n// Hit Count: pause after N hits\n// Format: \"> 5\" (greater than 5)\n//        \"== 10\" (equals 10)\n//        \"% 3 == 0\" (every 3rd hit)\n\n// Log Message: print without pausing\n// Format: \"Log: user = \" + user.name",
+      "code": "/* Right-click on breakpoint → Edit Condition */\n\n/* Condition: only pause when true */\nuser.is_admin == true\n\n/* Hit Count: pause after N hits\n   Format: \"> 5\" (greater than 5)\n           \"== 10\" (equals 10)\n           \"% 3 == 0\" (every 3rd hit) */\n\n/* Log Message: print without pausing\n   Format: \"Log: user = \" + user.name */",
       "tags": [
         { "text": "Conditional" },
         { "text": "Breakpoints" }
@@ -364,7 +365,7 @@
       "label": "DEBUG CONSOLE",
       "title": "Debug Console Examples",
       "language": "javascript",
-      "code": "// In Debug Console:\n\n// Inspect variables\nuser\nuser.name\nuser.is_active\n\n// Execute code\nprint(f\"User: {user.name}\")\nresult = calculate_total(items)\n\n// Test function calls\nresponse = api.get_user(user_id)\nresponse.json()\n\n// Modify values (careful!)\ncount = 100",
+      "code": "/* In Debug Console: */\n\n/* Inspect variables */\nuser\nuser.name\nuser.is_active\n\n/* Execute code */\nprint(f\"User: {user.name}\")\nresult = calculate_total(items)\n\n/* Test function calls */\nresponse = api.get_user(user_id)\nresponse.json()\n\n/* Modify values (careful!) */\ncount = 100",
       "tags": [
         { "text": "Debug Console" },
         { "text": "REPL" }
@@ -375,7 +376,7 @@
       "bg": "accent",
       "label": "PART 1",
       "title": "The Modern Python Environment",
-      "subtitle": "45 minutes",
+      "subtitle": "15 minutes",
       "footer": "PyCon 2026"
     },
     {
@@ -441,7 +442,7 @@
         { "type": "prompt", "text": "# Run Python with uv" },
         { "type": "output", "text": "uv run python main.py" },
         { "type": "prompt", "text": "# Run FastAPI with uv (auto-installs deps)" },
-        { "type": "output", "text": "uv run uvicorn main:app --reload" },
+        { "type": "output", "text": "uv run fastapi dev --port 8080" },
         { "type": "prompt", "text": "# Create virtual environment" },
         { "type": "output", "text": "uv venv && uv sync" }
       ]
@@ -455,7 +456,7 @@
       "bullets": [
         "Open Command Palette → Tasks: Configure Task",
         "Create a new tasks.json for a npm script style command",
-        "Configure: uv run uvicorn main:app --reload",
+        "Configure: uv run fastapi dev --port 8080",
         "Test running it with Tasks: Run Task"
       ]
     },
@@ -465,7 +466,7 @@
       "label": "TASKS.JSON EXAMPLE",
       "title": "Basic FastAPI Task",
       "language": "json",
-      "code": "{\n  \"version\": \"2.0.0\",\n  \"tasks\": [\n    {\n      \"label\": \"Run FastAPI Server\",\n      \"type\": \"shell\",\n      \"command\": \"uv run uvicorn main:app --reload\",\n      \"problemMatcher\": [],\n      \"isBackground\": false,\n      \"presentation\": {\n        \"reveal\": \"always\",\n        \"panel\": \"new\"\n      }\n    }\n  ]\n}",
+      "code": "{\n  \"version\": \"2.0.0\",\n  \"tasks\": [\n    {\n      \"label\": \"Run FastAPI Server\",\n      \"type\": \"shell\",\n      \"command\": \"uv run fastapi dev --port 8080\",\n      \"problemMatcher\": [],\n      \"isBackground\": false,\n      \"presentation\": {\n        \"reveal\": \"always\",\n        \"panel\": \"new\"\n      }\n    }\n  ]\n}",
       "tags": [
         { "text": "tasks.json" },
         { "text": "FastAPI" }
@@ -476,7 +477,7 @@
       "bg": "accent",
       "label": "PART 2",
       "title": "Bridging the Gap with Tasks",
-      "subtitle": "60 minutes",
+      "subtitle": "15 minutes",
       "footer": "PyCon 2026"
     },
     {
@@ -498,7 +499,7 @@
       "label": "BACKGROUND TASKS",
       "title": "Using isBackground: true",
       "language": "json",
-      "code": "{\n  \"label\": \"Start Vite Dev Server\",\n  \"type\": \"shell\",\n  \"command\": \"npm run dev\",\n  \"isBackground\": true,\n  \"problemMatcher\": {\n    \"owner\": \"custom\",\n    \"pattern\": {\n      \"regexp\": \"^VITE\"\n    },\n    \"background\": {\n      \"activeOnStart\": true,\n      \"beginsPattern\": \"^.*VITE.*$\",\n      \"endsPattern\": \"Local:\\s+https://localhost:\\\\d+\"\n    }\n  }\n}",
+      "code": "{\n  \"label\": \"Start: Vite Dev Server\",\n  \"type\": \"shell\",\n  \"command\": \"npm run dev\",\n  \"isBackground\": true,\n  \"problemMatcher\": [\n    \"$tsc-watch\",\n    {\n      \"owner\": \"vite\",\n      \"pattern\": {\n        \"regexp\": \"^.*$\",\n        \"message\": 0\n      },\n      \"background\": {\n        \"activeOnStart\": true,\n        \"beginsPattern\": \".*VITE.*\",\n        \"endsPattern\": \".*ready in.*\"\n      }\n    }\n  ]\n}",
       "tags": [
         { "text": "isBackground" },
         { "text": "Vite" }
@@ -585,7 +586,7 @@
       "bg": "accent",
       "label": "PART 3",
       "title": "The 'Remote Attach' Pattern",
-      "subtitle": "45 minutes",
+      "subtitle": "15 minutes",
       "footer": "PyCon 2026"
     },
     {
@@ -611,7 +612,7 @@
         { "type": "prompt", "text": "# Install debugpy" },
         { "type": "output", "text": "uv add --dev debugpy" },
         { "type": "prompt", "text": "# Run with debugpy listening on port 5678" },
-        { "type": "output", "text": "uv run python -m debugpy --listen 0.0.0.0:5678 -m uvicorn main:app --reload" },
+        { "type": "output", "text": "uv run debugpy --listen 5678 --wait-for-client -m fastapi dev --port 8081" },
         { "type": "comment", "text": "# Alternative: Add to your code" },
         { "type": "prompt", "text": "import debugpy" },
         { "type": "output", "text": "debugpy.listen((\"0.0.0.0\", 5678))" }
@@ -684,7 +685,7 @@
       "bg": "accent",
       "label": "PART 4",
       "title": "The One-Click Workflow",
-      "subtitle": "60 minutes",
+      "subtitle": "20 minutes",
       "footer": "PyCon 2026"
     },
     {
@@ -822,6 +823,19 @@
       "bg": "secondary",
       "quote": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are by definition not smart enough to debug it.",
       "author": "Brian Kernighan"
+    },
+    {
+      "type": "content",
+      "bg": "light",
+      "label": "Q&A",
+      "title": "Questions & Hands-On Practice",
+      "body": "Let's apply what we've learned:",
+      "bullets": [
+        "Try the one-click debug workflow",
+        "Experiment with compound configurations",
+        "Add debugpy to your own projects",
+        "Ask questions and share experiences"
+      ]
     },
     {
       "type": "title",
