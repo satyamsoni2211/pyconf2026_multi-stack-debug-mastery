@@ -1,7 +1,7 @@
 {
   "title": "Multi-Stack Debug Mastery",
   "lang": "en",
-  "footer": "PyCon 2026 Workshop",
+  "footer": "PyConf 2026 Workshop",
   "slides": [
     {
       "type": "title",
@@ -9,7 +9,7 @@
       "label": "WORKSHOP",
       "title": "Multi-Stack Debug Mastery",
       "subtitle": "Orchestrating VS Code for Python + Frontend Development",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "content",
@@ -65,7 +65,7 @@
       "label": "BASICS",
       "title": "Python Debugging Setup",
       "subtitle": "launch.json Configuration",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "content",
@@ -148,7 +148,7 @@
       "label": "FRONTEND",
       "title": "Frontend Debugging",
       "subtitle": "JavaScript & Browser Debugging",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "content",
@@ -218,7 +218,7 @@
       "label": "CONTROLS",
       "title": "Debugging Controls",
       "subtitle": "Mastering the Debugger",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "grid",
@@ -291,7 +291,7 @@
       "label": "VARIABLES",
       "title": "Variable Viewer",
       "subtitle": "Inspecting Application State",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "content",
@@ -377,7 +377,7 @@
       "label": "PART 1",
       "title": "The Modern Python Environment",
       "subtitle": "15 minutes",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "content",
@@ -478,7 +478,7 @@
       "label": "PART 2",
       "title": "Bridging the Gap with Tasks",
       "subtitle": "15 minutes",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "grid",
@@ -587,7 +587,7 @@
       "label": "PART 3",
       "title": "The 'Remote Attach' Pattern",
       "subtitle": "15 minutes",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "content",
@@ -686,7 +686,7 @@
       "label": "PART 4",
       "title": "The One-Click Workflow",
       "subtitle": "20 minutes",
-      "footer": "PyCon 2026"
+      "footer": "PyConf 2026"
     },
     {
       "type": "content",
@@ -842,8 +842,8 @@
       "bg": "primary",
       "label": "THANK YOU",
       "title": "Multi-Stack Debug Mastery",
-      "subtitle": "Questions? | @satyamsoni2211 | PyCon 2026",
-      "footer": "PyCon 2026"
+      "subtitle": "Questions? | @satyamsoni2211 | PyConf 2026",
+      "footer": "PyConf 2026"
     }
   ]
 }
