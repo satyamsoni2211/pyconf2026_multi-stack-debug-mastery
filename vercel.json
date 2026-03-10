@@ -1,8 +1,9 @@
 {
-  "buildCommand": "echo 'No build needed for static HTML'",
+  "buildCommand": "echo 'No build needed'",
   "outputDirectory": ".",
   "framework": null,
   "rewrites": [
-    { "source": "/multi-stack-debug-mastery.html", "destination": "/multi-stack-debug-mastery.html" }
+    { "source": "/(.*)", "destination": "/multi-stack-debug-mastery.html" },
+    { "source": "/", "destination": "/multi-stack-debug-mastery.html" }
   ]
 }
