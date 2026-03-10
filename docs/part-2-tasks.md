@@ -24,7 +24,7 @@ to write `problemMatcher` regex patterns that signal "service ready".
       "type":    "shell",                   // ← run in a terminal
       "command": "npm run dev",             // ← the actual shell command
       "options": {
-        "cwd": "${workspaceFolder}/audient-frontend"  // ← working directory
+        "cwd": "${workspaceFolder}/frontend"  // ← working directory
       },
       "isBackground": true,               // ← keep alive after VS Code starts it
       "problemMatcher": { ... }           // ← "ready" detection

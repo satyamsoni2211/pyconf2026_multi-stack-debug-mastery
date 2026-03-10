@@ -41,8 +41,8 @@
       },
       "pathMappings": [
         {
-          "localRoot": "${workspaceFolder}/audient-backend",
-          "remoteRoot": "${workspaceFolder}/audient-backend"
+          "localRoot": "${workspaceFolder}/backend",
+          "remoteRoot": "${workspaceFolder}/backend"
         }
       ],
       "justMyCode": true
@@ -64,11 +64,11 @@
       "request": "launch",
       "module": "fastapi",
       "args": ["dev", "--host", "0.0.0.0", "--port", "8080"],
-      "cwd": "${workspaceFolder}/audient-backend",
-      "python": "${workspaceFolder}/audient-backend/.venv/bin/python3",
+      "cwd": "${workspaceFolder}/backend",
+      "python": "${workspaceFolder}/backend/.venv/bin/python3",
       "justMyCode": true,
       "env": {
-        "PYTHONPATH": "${workspaceFolder}/audient-backend"
+        "PYTHONPATH": "${workspaceFolder}/backend"
       }
     },
 
@@ -87,7 +87,7 @@
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/audient-frontend/src",
+      "webRoot": "${workspaceFolder}/frontend/src",
       "sourceMapPathOverrides": {
         "webpack:///./src/*": "${webRoot}/*"
       },
@@ -108,16 +108,16 @@
       "name": "Electron: Debug Main Process",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "${workspaceFolder}/audient-frontend/node_modules/.bin/electron",
+      "runtimeExecutable": "${workspaceFolder}/frontend/node_modules/.bin/electron",
       "runtimeArgs": ["--remote-debugging-port=9223"],
-      "program": "${workspaceFolder}/audient-frontend/electron/main.cjs",
-      "cwd": "${workspaceFolder}/audient-frontend",
+      "program": "${workspaceFolder}/frontend/electron/main.cjs",
+      "cwd": "${workspaceFolder}/frontend",
       "env": {
         "VITE_DEV_SERVER_URL": "http://localhost:5173"
       },
       "preLaunchTask": "Start: Vite Dev Server",
       "sourceMaps": true,
-      "outFiles": ["${workspaceFolder}/audient-frontend/electron/**/*.js"]
+      "outFiles": ["${workspaceFolder}/frontend/electron/**/*.js"]
     }
   ],
 

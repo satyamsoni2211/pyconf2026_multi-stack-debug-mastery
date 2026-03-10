@@ -54,7 +54,7 @@ This guarantees you can set breakpoints anywhere, including in startup code.
 Run this command (or use the VS Code task):
 
 ```bash
-cd audient-backend
+cd backend
 uv run python -m debugpy --listen 5678 --wait-for-client \
     -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
@@ -90,7 +90,7 @@ INFO:     Uvicorn running on http://0.0.0.0:8000
 
 ## 3.4 Setting a Breakpoint
 
-Open `audient-backend/main.py` and find the `get_item` function:
+Open `backend/main.py` and find the `get_item` function:
 
 ```python
 async def get_item(item_id: int) -> dict:
@@ -124,8 +124,8 @@ For this workshop both paths are identical so the mapping is straightforward:
 ```jsonc
 "pathMappings": [
   {
-    "localRoot":  "${workspaceFolder}/audient-backend",  // ← your editor
-    "remoteRoot": "${workspaceFolder}/audient-backend"   // ← the running process
+    "localRoot":  "${workspaceFolder}/backend",  // ← your editor
+    "remoteRoot": "${workspaceFolder}/backend"   // ← the running process
   }
 ]
 ```
@@ -135,7 +135,7 @@ For this workshop both paths are identical so the mapping is straightforward:
 ```jsonc
 "pathMappings": [
   {
-    "localRoot":  "${workspaceFolder}/audient-backend",
+    "localRoot":  "${workspaceFolder}/backend",
     "remoteRoot": "/app"   // ← path inside the container
   }
 ]

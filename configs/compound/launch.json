@@ -24,8 +24,8 @@
       },
       "pathMappings": [
         {
-          "localRoot": "${workspaceFolder}/audient-backend",
-          "remoteRoot": "${workspaceFolder}/audient-backend"
+          "localRoot": "${workspaceFolder}/backend",
+          "remoteRoot": "${workspaceFolder}/backend"
         }
       ],
       "justMyCode": true
@@ -35,16 +35,16 @@
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/audient-frontend/src",
+      "webRoot": "${workspaceFolder}/frontend/src",
       "preLaunchTask": "Start: Vite Dev Server"
     },
     {
       "name": "Electron: Debug Main Process",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "${workspaceFolder}/audient-frontend/node_modules/.bin/electron",
-      "program": "${workspaceFolder}/audient-frontend/electron/main.cjs",
-      "cwd": "${workspaceFolder}/audient-frontend",
+      "runtimeExecutable": "${workspaceFolder}/frontend/node_modules/.bin/electron",
+      "program": "${workspaceFolder}/frontend/electron/main.cjs",
+      "cwd": "${workspaceFolder}/frontend",
       "preLaunchTask": "Start: Vite Dev Server"
     }
   ],

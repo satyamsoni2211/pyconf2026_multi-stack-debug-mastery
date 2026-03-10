@@ -4,7 +4,7 @@
 
 ## Overview
 
-In this section you will set up the `audient-backend` project using **uv**, a
+In this section you will set up the `backend` project using **uv**, a
 modern Python package manager that replaces pip + venv with a single fast tool.
 You will also run your first VS Code task to start FastAPI.
 
@@ -12,10 +12,10 @@ You will also run your first VS Code task to start FastAPI.
 
 ## 1.1 Project Structure
 
-The backend lives in `audient-backend/`:
+The backend lives in `backend/`:
 
 ```
-audient-backend/
+backend/
 ├── pyproject.toml   ← project metadata + dependencies (uv-compatible)
 ├── main.py          ← FastAPI application
 ├── tests/
@@ -50,7 +50,7 @@ uv --version
 ## 1.3 Setting Up the Backend
 
 ```bash
-cd audient-backend
+cd backend
 
 # Create a virtual environment and install all dependencies
 uv sync
@@ -106,7 +106,7 @@ The integrated terminal panel should appear and you should see the same
 ## 1.6 Running Tests
 
 ```bash
-cd audient-backend
+cd backend
 uv run pytest -v
 ```
 

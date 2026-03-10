@@ -25,7 +25,7 @@
       "type": "shell",
       "command": "uv run fastapi dev --port 8080",
       "options": {
-        "cwd": "${workspaceFolder}/audient-backend"
+        "cwd": "${workspaceFolder}/backend"
       },
       "isBackground": true,
       // problemMatcher watches stdout/stderr for the "ready" signal so VS Code
@@ -59,7 +59,7 @@
       "type": "shell",
       "command": "uv run debugpy --listen 5678 --wait-for-client -m fastapi dev --port 8081",
       "options": {
-        "cwd": "${workspaceFolder}/audient-backend"
+        "cwd": "${workspaceFolder}/backend"
       },
       "isBackground": true,
       // The beginsPattern fires when uvicorn first starts printing output.
@@ -94,7 +94,7 @@
       "type": "shell",
       "command": "npm run dev",
       "options": {
-        "cwd": "${workspaceFolder}/audient-frontend"
+        "cwd": "${workspaceFolder}/frontend"
       },
       "isBackground": true,
       "problemMatcher": [
@@ -127,7 +127,7 @@
       "type": "shell",
       "command": "npm install",
       "options": {
-        "cwd": "${workspaceFolder}/audient-frontend"
+        "cwd": "${workspaceFolder}/frontend"
       },
       "presentation": {
         "reveal": "always",

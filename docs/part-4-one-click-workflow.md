@@ -93,7 +93,7 @@ or a Vite server running after you finish debugging.
 Install frontend dependencies if you haven't yet:
 
 ```bash
-cd audient-frontend
+cd frontend
 npm install
 ```
 
@@ -119,14 +119,14 @@ Once both servers are ready, VS Code:
 
 Set breakpoints in **both** files simultaneously:
 
-**Python** – `audient-backend/main.py`:
+**Python** – `backend/main.py`:
 ```python
 async def list_items() -> dict:
     items = [...]
     return {"items": items}   # ← breakpoint here
 ```
 
-**JavaScript** – `audient-frontend/src/main.js`:
+**JavaScript** – `frontend/src/main.js`:
 ```javascript
 const res = await fetch(`${API_BASE}/items`)  // ← breakpoint here
 ```
@@ -145,7 +145,7 @@ If you want to debug the Electron main process:
 
 1. Select **"Full Stack: FastAPI + Electron"** from the dropdown.
 2. Press **F5**.
-3. Set a breakpoint in `audient-frontend/electron/main.cjs` inside `createWindow`.
+3. Set a breakpoint in `frontend/electron/main.cjs` inside `createWindow`.
 
 The Electron main process pauses at your breakpoint.  The renderer is still
 accessible via the DevTools window that Electron opens automatically.

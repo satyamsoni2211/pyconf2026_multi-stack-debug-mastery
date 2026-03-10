@@ -18,7 +18,7 @@ This workshop teaches you how to turn VS Code into a powerful orchestration engi
 ## Workshop Outline
 
 ### Part 1: The Modern Python Environment (45 min)
-* Introduction to multi-directory project structures including `audient-backend` and `audient-frontend`.
+* Introduction to multi-directory project structures including `backend` and `frontend`.
 * Setting up `uv` for modern Python dependency management and execution.
 * **Exercise**: Creating a basic task to run FastAPI via `uv run`.
 

@@ -1493,8 +1493,8 @@ count = <span class="code-number">100</span></code></pre>
     <p style="font-size: 1.3rem; max-width: 800px;">Real-world projects span multiple directories:</p>
     
     <ul style="margin-top: 1.5rem; font-size: 1.2rem;">
-      <li>audient-backend/ - FastAPI server (Python)</li>
-      <li>audient-frontend/ - Vite + Electron (JavaScript)</li>
+      <li>backend/ - FastAPI server (Python)</li>
+      <li>frontend/ - Vite + Electron (JavaScript)</li>
       <li>Shared configurations and dependencies</li>
       <li>Each with its own package manager</li>
     </ul>
@@ -1518,9 +1518,9 @@ count = <span class="code-number">100</span></code></pre>
         <div class="terminal-output">drwxr-xr-x  myproject/
 -rw-r--r--  package.json
 -rw-r--r--  pyproject.toml</div>
-        <div><span class="terminal-prompt">$ </span>ls myproject/audient-backend/</div>
+        <div><span class="terminal-prompt">$ </span>ls myproject/backend/</div>
         <div class="terminal-output">main.py  app/  uv.lock  pyproject.toml</div>
-        <div><span class="terminal-prompt">$ </span>ls myproject/audient-frontend/</div>
+        <div><span class="terminal-prompt">$ </span>ls myproject/frontend/</div>
         <div class="terminal-output">src/  package.json  vite.config.ts</div>
       </div>
     </div>
@@ -1880,7 +1880,7 @@ count = <span class="code-number">100</span></code></pre>
   },
   <span class="code-string">"pathMappings"</span>: [
     {
-      <span class="code-string">"localRoot"</span>: <span class="code-string">"${workspaceFolder}/audient-backend"</span>,
+      <span class="code-string">"localRoot"</span>: <span class="code-string">"${workspaceFolder}/backend"</span>,
       <span class="code-string">"remoteRoot"</span>: <span class="code-string">"/app"</span>
     }
   ],
@@ -2013,7 +2013,7 @@ count = <span class="code-number">100</span></code></pre>
       <span class="code-string">"type"</span>: <span class="code-string">"chrome"</span>,
       <span class="code-string">"request"</span>: <span class="code-string">"launch"</span>,
       <span class="code-string">"url"</span>: <span class="code-string">"http://localhost:5173"</span>,
-      <span class="code-string">"webRoot"</span>: <span class="code-string">"${workspaceFolder}/audient-frontend"</span>
+      <span class="code-string">"webRoot"</span>: <span class="code-string">"${workspaceFolder}/frontend"</span>
     }
   ]
 }</code></pre>
@@ -2049,22 +2049,39 @@ count = <span class="code-number">100</span></code></pre>
 {
   <span class="code-string">"tasks"</span>: [
     {
-      <span class="code-string">"label"</span>: <span class="code-string">"Start FastAPI"</span>,
+      <span class="code-string">"label"</span>: <span class="code-string">"Start: FastAPI (debugpy on :5678)"</span>,
       <span class="code-string">"type"</span>: <span class="code-string">"shell"</span>,
-      <span class="code-string">"command"</span>: <span class="code-string">"uv run python -m debugpy..."</span>,
+      <span class="code-string">"command"</span>: <span class="code-string">"uv run debugpy --listen 5678 --wait-for-client -m fastapi dev --port 8081"</span>,
       <span class="code-string">"isBackground"</span>: true,
       <span class="code-string">"problemMatcher"</span>: {
-        <span class="code-string">"endsPattern"</span>: <span class="code-string">"Application startup complete"</span>
+        <span class="code-string">"owner"</span>: <span class="code-string">"fastapi-debugpy"</span>,
+        <span class="code-string">"background"</span>: {
+          <span class="code-string">"activeOnStart"</span>: true,
+          <span class="code-string">"beginsPattern"</span>: <span class="code-string">".*FastAPI\\s+Starting development server.*"</span>,
+          <span class="code-string">"endsPattern"</span>: <span class="code-string">".*Application startup complete.*"</span>
+        }
       }
     },
     {
-      <span class="code-string">"label"</span>: <span class="code-string">"Start Vite"</span>,
-      <span class="code-string">"type"</span>: <span class="code-string">"shell"</span>, 
+      <span class="code-string">"label"</span>: <span class="code-string">"Start: Vite Dev Server"</span>,
+      <span class="code-string">"type"</span>: <span class="code-string">"shell"</span>,
       <span class="code-string">"command"</span>: <span class="code-string">"npm run dev"</span>,
       <span class="code-string">"isBackground"</span>: true,
-      <span class="code-string">"problemMatcher"</span>: {
-        <span class="code-string">"endsPattern"</span>: <span class="code-string">"Local:.*localhost"</span>
-      }
+      <span class="code-string">"problemMatcher"</span>: [
+        <span class="code-string">"$tsc-watch"</span>,
+        {
+          <span class="code-string">"owner"</span>: <span class="code-string">"vite"</span>,
+          <span class="code-string">"pattern"</span>: {
+            <span class="code-string">"regexp"</span>: <span class="code-string">"^.*$"</span>,
+            <span class="code-string">"message"</span>: 0
+          },
+          <span class="code-string">"background"</span>: {
+            <span class="code-string">"activeOnStart"</span>: true,
+            <span class="code-string">"beginsPattern"</span>: <span class="code-string">".*VITE.*"</span>,
+            <span class="code-string">"endsPattern"</span>: <span class="code-string">".*ready in.*"</span>
+          }
+        }
+      ]
     }
   ]
 }

@@ -12,7 +12,7 @@ build/
 
 # Node / Vite
 node_modules/
-audient-frontend/dist/
+frontend/dist/
 
 # Editor / OS
 .DS_Store

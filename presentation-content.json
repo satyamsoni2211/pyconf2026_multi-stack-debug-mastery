@@ -386,8 +386,8 @@
       "title": "Multi-Directory Project Structure",
       "body": "Real-world projects span multiple directories:",
       "bullets": [
-        "audient-backend/ - FastAPI server (Python)",
-        "audient-frontend/ - Vite + Electron (JavaScript)",
+        "backend/ - FastAPI server (Python)",
+        "frontend/ - Vite + Electron (JavaScript)",
         "Shared configurations and dependencies",
         "Each with its own package manager"
       ]
@@ -401,9 +401,9 @@
         { "type": "comment", "text": "Project root structure" },
         { "type": "prompt", "text": "ls -la myproject/" },
         { "type": "output", "text": "drwxr-xr-x  myproject/\n-rw-r--r--  package.json\n-rw-r--r--  pyproject.toml" },
-        { "type": "prompt", "text": "ls myproject/audient-backend/" },
+        { "type": "prompt", "text": "ls myproject/backend/" },
         { "type": "output", "text": "main.py  app/  uv.lock  pyproject.toml" },
-        { "type": "prompt", "text": "ls myproject/audient-frontend/" },
+        { "type": "prompt", "text": "ls myproject/frontend/" },
         { "type": "output", "text": "src/  package.json  vite.config.ts" }
       ]
     },
@@ -624,7 +624,7 @@
       "label": "LAUNCH.JSON",
       "title": "Remote Attach Configuration",
       "language": "json",
-      "code": "{\n  \"name\": \"Python: Remote Attach\",\n  \"type\": \"debugpy\",\n  \"request\": \"attach\",\n  \"connect\": {\n    \"host\": \"localhost\",\n    \"port\": 5678\n  },\n  \"pathMappings\": [\n    {\n      \"localRoot\": \"${workspaceFolder}/audient-backend\",\n      \"remoteRoot\": \"/app\"\n    }\n  ],\n  \"justMyCode\": true\n}",
+      "code": "{\n  \"name\": \"Python: Remote Attach\",\n  \"type\": \"debugpy\",\n  \"request\": \"attach\",\n  \"connect\": {\n    \"host\": \"localhost\",\n    \"port\": 5678\n  },\n  \"pathMappings\": [\n    {\n      \"localRoot\": \"${workspaceFolder}/backend\",\n      \"remoteRoot\": \"/app\"\n    }\n  ],\n  \"justMyCode\": true\n}",
       "tags": [
         { "text": "debugpy" },
         { "text": "Attach" }
@@ -707,7 +707,7 @@
       "label": "COMPOUND EXAMPLE",
       "title": "Creating a Compound Config",
       "language": "json",
-      "code": "{\n  \"compounds\": [\n    {\n      \"name\": \"Full Stack Debug\",\n      \"configurations\": [\n        \"Python: FastAPI Attach\",\n        \"Chrome: Launch Frontend\"\n      ],\n      \"stopAll\": true\n    }\n  ],\n  \"configurations\": [\n    {\n      \"name\": \"Python: FastAPI Attach\",\n      \"type\": \"debugpy\",\n      \"request\": \"attach\",\n      \"connect\": { \"port\": 5678 },\n      \"preLaunchTask\": \"Start FastAPI\"\n    },\n    {\n      \"name\": \"Chrome: Launch Frontend\",\n      \"type\": \"chrome\",\n      \"request\": \"launch\",\n      \"url\": \"http://localhost:5173\",\n      \"webRoot\": \"${workspaceFolder}/audient-frontend\"\n    }\n  ]\n}",
+      "code": "{\n  \"compounds\": [\n    {\n      \"name\": \"Full Stack Debug\",\n      \"configurations\": [\n        \"Python: FastAPI Attach\",\n        \"Chrome: Launch Frontend\"\n      ],\n      \"stopAll\": true\n    }\n  ],\n  \"configurations\": [\n    {\n      \"name\": \"Python: FastAPI Attach\",\n      \"type\": \"debugpy\",\n      \"request\": \"attach\",\n      \"connect\": { \"port\": 5678 },\n      \"preLaunchTask\": \"Start FastAPI\"\n    },\n    {\n      \"name\": \"Chrome: Launch Frontend\",\n      \"type\": \"chrome\",\n      \"request\": \"launch\",\n      \"url\": \"http://localhost:5173\",\n      \"webRoot\": \"${workspaceFolder}/frontend\"\n    }\n  ]\n}",
       "tags": [
         { "text": "Compounds" },
         { "text": "Full Stack" }
@@ -732,7 +732,7 @@
       "label": "FULL WORKFLOW",
       "title": "Complete One-Click Setup",
       "language": "json",
-      "code": "// tasks.json\n{\n  \"tasks\": [\n    {\n      \"label\": \"Start FastAPI\",\n      \"type\": \"shell\",\n      \"command\": \"uv run python -m debugpy...\",\n      \"isBackground\": true,\n      \"problemMatcher\": {\n        \"endsPattern\": \"Application startup complete\"\n      }\n    },\n    {\n      \"label\": \"Start Vite\",\n      \"type\": \"shell\", \n      \"command\": \"npm run dev\",\n      \"isBackground\": true,\n      \"problemMatcher\": {\n        \"endsPattern\": \"Local:.*localhost\"\n      }\n    }\n  ]\n}\n\n// launch.json - compound\n{\n  \"compounds\": [\n    {\n      \"name\": \"Debug Full Stack\",\n      \"configurations\": [\n        \"Python: FastAPI Attach\",\n        \"JavaScript: Chrome\"\n      ],\n      \"stopAll\": true\n    }\n  ]\n}",
+      "code": "// tasks.json\n{\n  \"tasks\": [\n    {\n      \"label\": \"Start: FastAPI (debugpy on :5678)\",\n      \"type\": \"shell\",\n      \"command\": \"uv run debugpy --listen 5678 --wait-for-client -m fastapi dev --port 8081\",\n      \"isBackground\": true,\n      \"problemMatcher\": {\n        \"owner\": \"fastapi-debugpy\",\n        \"background\": {\n          \"activeOnStart\": true,\n          \"beginsPattern\": \".*FastAPI\\\\s+Starting development server.*\",\n          \"endsPattern\": \".*Application startup complete.*\"\n        }\n      }\n    },\n    {\n      \"label\": \"Start: Vite Dev Server\",\n      \"type\": \"shell\",\n      \"command\": \"npm run dev\",\n      \"isBackground\": true,\n      \"problemMatcher\": [\n        \"$tsc-watch\",\n        {\n          \"owner\": \"vite\",\n          \"pattern\": {\n            \"regexp\": \"^.*$\",\n            \"message\": 0\n          },\n          \"background\": {\n            \"activeOnStart\": true,\n            \"beginsPattern\": \".*VITE.*\",\n            \"endsPattern\": \".*ready in.*\"\n          }\n        }\n      ]\n    }\n  ]\n}\n\n// launch.json - compound\n{\n  \"compounds\": [\n    {\n      \"name\": \"Debug Full Stack\",\n      \"configurations\": [\n        \"Python: FastAPI Attach\",\n        \"JavaScript: Chrome\"\n      ],\n      \"stopAll\": true\n    }\n  ]\n}",
       "tags": [
         { "text": "Complete" },
         { "text": "Workflow" }

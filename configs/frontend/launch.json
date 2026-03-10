@@ -28,7 +28,7 @@
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/audient-frontend/src",
+      "webRoot": "${workspaceFolder}/frontend/src",
       "sourceMapPathOverrides": {
         "webpack:///./src/*": "${webRoot}/*"
       },
@@ -47,7 +47,7 @@
       "request": "attach",
       "port": 9222,
       "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/audient-frontend/src",
+      "webRoot": "${workspaceFolder}/frontend/src",
       "sourceMaps": true
     },
 
@@ -66,16 +66,16 @@
       "name": "Electron: Debug Main Process",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "${workspaceFolder}/audient-frontend/node_modules/.bin/electron",
+      "runtimeExecutable": "${workspaceFolder}/frontend/node_modules/.bin/electron",
       "runtimeArgs": ["--remote-debugging-port=9223"],
-      "program": "${workspaceFolder}/audient-frontend/electron/main.cjs",
-      "cwd": "${workspaceFolder}/audient-frontend",
+      "program": "${workspaceFolder}/frontend/electron/main.cjs",
+      "cwd": "${workspaceFolder}/frontend",
       "env": {
         "VITE_DEV_SERVER_URL": "http://localhost:5173"
       },
       "preLaunchTask": "Start: Vite Dev Server",
       "sourceMaps": true,
-      "outFiles": ["${workspaceFolder}/audient-frontend/electron/**/*.js"]
+      "outFiles": ["${workspaceFolder}/frontend/electron/**/*.js"]
     },
 
     // =========================================================================
@@ -89,8 +89,8 @@
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/audient-frontend/src",
-      "runtimeExecutable": "${workspaceFolder}/audient-frontend/node_modules/.bin/electron"
+      "webRoot": "${workspaceFolder}/frontend/src",
+      "runtimeExecutable": "${workspaceFolder}/frontend/node_modules/.bin/electron"
     },
 
     // =========================================================================
@@ -102,7 +102,7 @@
       "name": "Node.js: Launch Server",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/audient-frontend/server/index.js",
+      "program": "${workspaceFolder}/frontend/server/index.js",
       "console": "integratedTerminal",
       "runtimeExecutable": "node",
       "skipFiles": ["<node_internals>/**"]
@@ -118,7 +118,7 @@
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "nodemon",
-      "program": "${workspaceFolder}/audient-frontend/server/index.js",
+      "program": "${workspaceFolder}/frontend/server/index.js",
       "console": "integratedTerminal",
       "restart": true,
       "skipFiles": ["<node_internals>/**"]

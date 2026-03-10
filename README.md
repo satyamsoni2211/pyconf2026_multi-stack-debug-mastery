@@ -1,7 +1,8 @@
 # 🎧 Multi-Stack Debug Mastery — PyConf 2026
 
-> **Workshop:** Orchestrating VS Code for Full-Stack Python Debugging  
+> **Workshop:** Orchestrating VS Code for Full-Stack Python Debugging
 > **Conference:** PyConf 2026
+> **Live Presentation:** [https://pyconf2026.satyamsoni.com](https://pyconf2026.satyamsoni.com)
 
 Stop juggling terminal tabs. Turn VS Code into a one-click debugging engine
 for your FastAPI + Vite/Electron stack.
@@ -23,30 +24,40 @@ for your FastAPI + Vite/Electron stack.
 
 ```
 .
-├── .vscode/
-│   ├── launch.json      ← Debug configurations (Remote Attach, Chrome, Electron, Compounds)
-│   └── tasks.json       ← Background service tasks (FastAPI, Vite, composite)
+├── .github/
+│   └── workflows/
+│       └── vercel.yml      ← GitHub Actions for Vercel deployment
 │
-├── audient-backend/     ← FastAPI application (Python / uv)
+├── .vscode/
+│   ├── launch.json         ← Debug configurations (Remote Attach, Chrome, Electron, Compounds)
+│   └── tasks.json          ← Background service tasks (FastAPI, Vite, composite)
+│
+├── backend/                ← FastAPI application (Python / uv)
 │   ├── pyproject.toml
+│   ├── uv.lock
 │   ├── main.py
 │   └── tests/
 │
-├── audient-frontend/    ← Vite + Electron application (Node.js)
+├── frontend/               ← Vite + Electron application (Node.js)
 │   ├── electron/
-│   │   └── main.cjs     ← Electron main process
+│   │   └── main.cjs       ← Electron main process
 │   ├── src/
-│   │   ├── main.js      ← Renderer / browser entry point
+│   │   ├── main.js        ← Renderer / browser entry point
 │   │   └── style.css
 │   ├── index.html
 │   ├── vite.config.js
 │   └── package.json
 │
-└── docs/
-    ├── part-1-modern-python-env.md
-    ├── part-2-tasks.md
-    ├── part-3-remote-attach.md
-    └── part-4-one-click-workflow.md
+├── docs/
+│   ├── part-1-modern-python-env.md
+│   ├── part-2-tasks.md
+│   ├── part-3-remote-attach.md
+│   ├── part-4-one-click-workflow.md
+│   └── tasks-guide.md
+│
+├── multi-stack-debug-mastery.html  ← Presentation (interactive HTML)
+├── presentation-content.json       ← Presentation content (JSON)
+└── vercel.json                    ← Vercel configuration
 ```
 
 ---
@@ -67,7 +78,7 @@ for your FastAPI + Vite/Electron stack.
 ### 1. Backend setup
 
 ```bash
-cd audient-backend
+cd backend
 uv sync --extra dev
 uv run pytest -v          # verify everything works
 ```
@@ -75,7 +86,7 @@ uv run pytest -v          # verify everything works
 ### 2. Frontend setup
 
 ```bash
-cd audient-frontend
+cd frontend
 npm install
 ```
 
@@ -100,16 +111,25 @@ Work through the parts in order:
 3. [Part 3 – The Remote Attach Pattern](docs/part-3-remote-attach.md)
 4. [Part 4 – The One-Click Workflow](docs/part-4-one-click-workflow.md)
 
+Additional resources:
+- [Tasks Guide](docs/tasks-guide.md) - Quick reference for VS Code tasks
+
 ---
 
 ## Available Debug Configurations
 
 | Configuration | Description |
 |--------------|-------------|
-| `Python: Remote Attach (debugpy)` | Attach to FastAPI running under debugpy on port 5678 |
-| `Python: Launch FastAPI (direct)` | VS Code launches FastAPI directly (Part 1 exercise) |
-| `Chrome: Debug Frontend` | Attach Chrome debugger to Vite dev server |
-| `Electron: Debug Main Process` | Debug the Electron main process |
+| `Python: File` | Debug a standalone Python script |
+| `Python: Module` | Debug a module: python -m module |
+| `Python: Pytest` | Debug pytest tests |
+| `Python: Django` | Debug Django applications |
+| `Python: Remote Attach` | Attach to running Python process (debugpy on port 5678) |
+| `Chrome: Launch` | Launch Chrome for debugging |
+| `Chrome: Attach` | Attach to running Chrome session |
+| `Node: Launch` | Debug Node.js application |
+| `Electron: Main` | Debug Electron main process |
+| `Electron: Renderer` | Debug Electron renderer process |
 | **`Full Stack: FastAPI + Chrome`** | **One-click compound – primary workshop exercise** |
 | `Full Stack: FastAPI + Electron` | One-click compound – Electron bonus exercise |
 
@@ -120,5 +140,38 @@ Work through the parts in order:
 | `Start: FastAPI (normal)` | Run FastAPI without the debugger |
 | `Start: FastAPI (debugpy on :5678)` | Run FastAPI under debugpy, listening on port 5678 |
 | `Start: Vite Dev Server` | Start the Vite dev server on port 5173 |
-| `Install: Frontend Dependencies` | Run `npm install` in audient-frontend |
+| `Install: Frontend Dependencies` | Run `npm install` in frontend |
 | `Start: Full Stack (debugpy + Vite)` | Start both servers in parallel (used by compound configs) |
+
+---
+
+## Presentation
+
+The workshop presentation is available online:
+
+**Live URL:** [https://pyconf2026.satyamsoni.com](https://pyconf2026.satyamsoni.com)
+
+### Presentation Files
+
+| File | Description |
+|------|-------------|
+| `multi-stack-debug-mastery.html` | Main presentation (interactive HTML) |
+| `presentation-content.json` | Presentation content in JSON format |
+| `.github/workflows/vercel.yml` | GitHub Actions workflow for deployment |
+| `vercel.json` | Vercel configuration |
+
+### Deployment
+
+The presentation is automatically deployed to Vercel via GitHub Actions on every push to the `main` branch. The deployment uses the Production environment.
+
+To deploy manually:
+
+```bash
+npm i -g vercel
+vercel --prod
+```
+
+The deployment uses the Production environment in GitHub. Ensure the following secrets are configured:
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`

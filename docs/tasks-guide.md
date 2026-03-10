@@ -198,7 +198,7 @@ To report errors in Problems panel:
   "label": "Start: FastAPI (normal)",
   "type": "shell",
   "command": "uv run fastapi dev --port 8080",
-  "cwd": "${workspaceFolder}/audient-backend",
+  "cwd": "${workspaceFolder}/backend",
   "isBackground": true,
   "problemMatcher": {
     "owner": "fastapi",
@@ -218,7 +218,7 @@ To report errors in Problems panel:
   "label": "Start: FastAPI (debugpy)",
   "type": "shell",
   "command": "uv run debugpy --listen 5678 --wait-for-client -m fastapi dev --port 8081",
-  "cwd": "${workspaceFolder}/audient-backend",
+  "cwd": "${workspaceFolder}/backend",
   "isBackground": true,
   "problemMatcher": {
     "owner": "fastapi-debugpy",
@@ -238,7 +238,7 @@ To report errors in Problems panel:
   "label": "Start: Vite Dev Server",
   "type": "shell",
   "command": "npm run dev",
-  "cwd": "${workspaceFolder}/audient-frontend",
+  "cwd": "${workspaceFolder}/frontend",
   "isBackground": true,
   "problemMatcher": [
     "$tsc-watch",
@@ -265,7 +265,7 @@ To report errors in Problems panel:
   "label": "Install: Dependencies",
   "type": "shell",
   "command": "npm install",
-  "cwd": "${workspaceFolder}/audient-frontend",
+  "cwd": "${workspaceFolder}/frontend",
   "presentation": {
     "reveal": "always",
     "panel": "shared",
