@@ -38,12 +38,17 @@ for your FastAPI + Vite/Electron stack.
 │   ├── main.py
 │   └── tests/
 │
-├── frontend/               ← Vite + Electron application (Node.js)
+├── frontend/               ← Vite + React application (Node.js)
 │   ├── electron/
 │   │   └── main.cjs       ← Electron main process
 │   ├── src/
-│   │   ├── main.js        ← Renderer / browser entry point
-│   │   └── style.css
+│   │   ├── main.jsx       ← React entry point
+│   │   ├── App.jsx        ← Main React component
+│   │   ├── App.css        ← Styles
+│   │   └── components/
+│   │       ├── Header.jsx    ← "Audient" header
+│   │       ├── HealthCheck.jsx  ← Backend health status
+│   │       └── ItemsList.jsx    ← Items list from API
 │   ├── index.html
 │   ├── vite.config.js
 │   └── package.json
