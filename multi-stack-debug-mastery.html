@@ -705,6 +705,50 @@ li::marker {
     .slide .two-col > div, .slide .color-swatch, .slide .svg-demo svg {
       opacity: 0;
     }
+
+    /* Copy button styles */
+    .code-container {
+      position: relative;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.75rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    .copy-btn.copied {
+      background: rgba(46, 204, 113, 0.3);
+      border-color: rgba(46, 204, 113, 0.6);
+    }
+    .copy-icon, .check-icon {
+      flex-shrink: 0;
+    }
+
+    /* Clickable task cards */
+    .task-card.clickable {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .task-card.clickable:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
   </style>
 </head>
 <body>
@@ -857,7 +901,7 @@ li::marker {
     <p style="font-size: 1.2rem; max-width: 700px;">By the end of this workshop, you'll be able to:</p>
     <div class="task-grid">
       
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Python Debug Configuration Types')">
         <div class="task-number">01</div>
         <div class="task-title">Python Debug Configs</div>
         <div class="task-desc">Configure launch.json for files, modules, pytest</div>
@@ -866,7 +910,7 @@ li::marker {
           <span class="tag tag--">VS Code</span><span class="tag tag--">Python</span>
         </div>
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Frontend Debugging Options')">
         <div class="task-number">02</div>
         <div class="task-title">Frontend Debug</div>
         <div class="task-desc">Debug JavaScript/TypeScript in Chrome and Electron</div>
@@ -875,7 +919,7 @@ li::marker {
           <span class="tag tag--">Chrome</span><span class="tag tag--">DevTools</span>
         </div>
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Debug Control Keys')">
         <div class="task-number">03</div>
         <div class="task-title">Debug Controls</div>
         <div class="task-desc">Master breakpoints, stepping, and debugging actions</div>
@@ -884,7 +928,7 @@ li::marker {
           <span class="tag tag--">Controls</span><span class="tag tag--">F5/F10/F11</span>
         </div>
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Understanding the Variables Panel')">
         <div class="task-number">04</div>
         <div class="task-title">Variable Viewer</div>
         <div class="task-desc">Inspect locals, globals, and watch expressions</div>
@@ -893,7 +937,7 @@ li::marker {
           <span class="tag tag--">Variables</span><span class="tag tag--">Watch</span>
         </div>
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Anatomy of tasks.json')">
         <div class="task-number">05</div>
         <div class="task-title">Orchestrate Tasks</div>
         <div class="task-desc">Automate services with tasks.json</div>
@@ -902,7 +946,7 @@ li::marker {
           <span class="tag tag--">Tasks</span><span class="tag tag--">Automation</span>
         </div>
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Remote Attach Configuration')">
         <div class="task-number">06</div>
         <div class="task-title">Remote Attach</div>
         <div class="task-desc">Debug Python apps on specific ports with debugpy</div>
@@ -947,25 +991,25 @@ li::marker {
     
     <div class="task-grid">
       
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Debug a Python File')">
         <div class="task-number">1</div>
         <div class="task-title">Python File</div>
         <div class="task-desc">Debug a standalone Python script</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Debug a Python Module')">
         <div class="task-number">2</div>
         <div class="task-title">Python Module</div>
         <div class="task-desc">Debug a module: python -m module</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Debug pytest Tests')">
         <div class="task-number">3</div>
         <div class="task-title">Pytest</div>
         <div class="task-desc">Debug pytest tests</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Debug Django Application')">
         <div class="task-number">4</div>
         <div class="task-title">Django</div>
         <div class="task-desc">Debug Django applications</div>
@@ -977,7 +1021,7 @@ li::marker {
         <div class="task-desc">Debug Flask applications</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Remote Attach Configuration')">
         <div class="task-number">6</div>
         <div class="task-title">Remote Attach</div>
         <div class="task-desc">Attach to running Python process</div>
@@ -992,7 +1036,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">PYTHON FILE</div>
     <h2>Debug a Python File</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Python: Debug File"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"debugpy"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"launch"</span>,
@@ -1003,6 +1058,7 @@ li::marker {
     <span class="code-string">"DEBUG"</span>: <span class="code-string">"true"</span>
   }
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">launch.json</span><span class="tag tag--">Python File</span>
@@ -1015,7 +1071,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">PYTHON MODULE</div>
     <h2>Debug a Python Module</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Python: Module"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"debugpy"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"launch"</span>,
@@ -1028,6 +1095,7 @@ li::marker {
   <span class="code-string">"console"</span>: <span class="code-string">"integratedTerminal"</span>,
   <span class="code-string">"justMyCode"</span>: true
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">module</span><span class="tag tag--">fastapi</span>
@@ -1040,7 +1108,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">PYTEST DEBUG</div>
     <h2>Debug pytest Tests</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Python: Pytest"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"debugpy"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"launch"</span>,
@@ -1056,6 +1135,7 @@ li::marker {
     <span class="code-string">"PYTHONPATH"</span>: <span class="code-string">"${workspaceFolder}"</span>
   }
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">pytest</span><span class="tag tag--">Testing</span>
@@ -1068,7 +1148,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">DJANGO DEBUG</div>
     <h2>Debug Django Application</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Python: Django"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"debugpy"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"launch"</span>,
@@ -1083,6 +1174,7 @@ li::marker {
     <span class="code-string">"DJANGO_SETTINGS_MODULE"</span>: <span class="code-string">"mysite.settings"</span>
   }
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Django</span><span class="tag tag--">Web Framework</span>
@@ -1121,7 +1213,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">CHROME LAUNCH</div>
     <h2>Launch Chrome for Debugging</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Chrome: Launch"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"chrome"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"launch"</span>,
@@ -1133,6 +1236,7 @@ li::marker {
     <span class="code-string">"--disable-web-security"</span>
   ]
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Chrome</span><span class="tag tag--">Launch</span>
@@ -1145,7 +1249,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">CHROME ATTACH</div>
     <h2>Attach to Running Chrome</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Chrome: Attach"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"chrome"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"attach"</span>,
@@ -1157,6 +1272,7 @@ li::marker {
 
 /* Start Chrome with remote debugging:
    chrome --remote-debugging-port=9222 */</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Chrome</span><span class="tag tag--">Attach</span>
@@ -1169,7 +1285,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">NODE DEBUG</div>
     <h2>Debug Node.js Application</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Node: Launch"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"node"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"launch"</span>,
@@ -1187,6 +1314,7 @@ li::marker {
   <span class="code-string">"program"</span>: <span class="code-string">"${workspaceFolder}/server/index.js"</span>,
   <span class="code-string">"console"</span>: <span class="code-string">"integratedTerminal"</span>
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Node.js</span><span class="tag tag--">Server</span>
@@ -1199,7 +1327,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">ELECTRON DEBUG</div>
     <h2>Debug Electron Application</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Electron: Main"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"node"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"launch"</span>,
@@ -1215,6 +1354,7 @@ li::marker {
   <span class="code-string">"url"</span>: <span class="code-string">"file://${workspaceFolder}/index.html"</span>,
   <span class="code-string">"webRoot"</span>: <span class="code-string">"${workspaceFolder}"</span>
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Electron</span><span class="tag tag--">Desktop</span>
@@ -1317,7 +1457,18 @@ li::marker {
     <div class="label" style="color: var(--color-success);">CONDITIONAL BP</div>
     <h2>Conditional Breakpoints</h2>
     
-    <pre style="max-width: 900px;"><code>/* Right-click on breakpoint → Edit Condition */
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>/* Right-click on breakpoint → Edit Condition */
 
 /* Condition: only pause when true */
 user.is_admin == true
@@ -1329,6 +1480,7 @@ user.is_admin == true
 
 /* Log Message: print without pausing
    Format: <span class="code-string">"Log: user = "</span> + user.name */</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Conditional</span><span class="tag tag--">Breakpoints</span>
@@ -1453,7 +1605,18 @@ user.is_admin == true
     <div class="label" style="color: var(--color-success);">DEBUG CONSOLE</div>
     <h2>Debug Console Examples</h2>
     
-    <pre style="max-width: 900px;"><code><span <span class="code-keyword">class</span>="code-comment">/* In Debug Console: */</span>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code><span <span class="code-keyword">class</span>="code-comment">/* In Debug Console: */</span>
 
 <span <span class="code-keyword">class</span>="code-comment">/* Inspect variables */</span>
 user
@@ -1470,6 +1633,7 @@ response.json()
 
 <span <span class="code-keyword">class</span>="code-comment">/* Modify values (careful!) */</span>
 count = <span class="code-number">100</span></code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Debug Console</span><span class="tag tag--">REPL</span>
@@ -1608,7 +1772,18 @@ count = <span class="code-number">100</span></code></pre>
     <div class="label" style="color: var(--color-success);">TASKS.JSON EXAMPLE</div>
     <h2>Basic FastAPI Task</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"version"</span>: <span class="code-string">"2.0.0"</span>,
   <span class="code-string">"tasks"</span>: [
     {
@@ -1624,6 +1799,7 @@ count = <span class="code-number">100</span></code></pre>
     }
   ]
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">tasks.json</span><span class="tag tag--">FastAPI</span>
@@ -1686,7 +1862,18 @@ count = <span class="code-number">100</span></code></pre>
     <div class="label" style="color: var(--color-success);">BACKGROUND TASKS</div>
     <h2>Using isBackground: true</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"label"</span>: <span class="code-string">"Start: Vite Dev Server"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"shell"</span>,
   <span class="code-string">"command"</span>: <span class="code-string">"npm run dev"</span>,
@@ -1707,6 +1894,7 @@ count = <span class="code-number">100</span></code></pre>
     }
   ]
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">isBackground</span><span class="tag tag--">Vite</span>
@@ -1760,7 +1948,18 @@ count = <span class="code-number">100</span></code></pre>
     <div class="label" style="color: var(--color-success);">REGEX PATTERNS</div>
     <h2>Crafting Regex for ProblemMatcher</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"problemMatcher"</span>: {
     <span class="code-string">"owner"</span>: <span class="code-string">"fastapi"</span>,
     <span class="code-string">"fileLocation"</span>: <span class="code-string">"relative"</span>,
@@ -1775,6 +1974,7 @@ count = <span class="code-number">100</span></code></pre>
     }
   }
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Regex</span><span class="tag tag--">Pattern</span>
@@ -1870,7 +2070,18 @@ count = <span class="code-number">100</span></code></pre>
     <div class="label" style="color: var(--color-success);">LAUNCH.JSON</div>
     <h2>Remote Attach Configuration</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"name"</span>: <span class="code-string">"Python: Remote Attach"</span>,
   <span class="code-string">"type"</span>: <span class="code-string">"debugpy"</span>,
   <span class="code-string">"request"</span>: <span class="code-string">"attach"</span>,
@@ -1886,6 +2097,7 @@ count = <span class="code-number">100</span></code></pre>
   ],
   <span class="code-string">"justMyCode"</span>: true
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">debugpy</span><span class="tag tag--">Attach</span>
@@ -1989,7 +2201,18 @@ count = <span class="code-number">100</span></code></pre>
     <div class="label" style="color: var(--color-success);">COMPOUND EXAMPLE</div>
     <h2>Creating a Compound Config</h2>
     
-    <pre style="max-width: 900px;"><code>{
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>{
   <span class="code-string">"compounds"</span>: [
     {
       <span class="code-string">"name"</span>: <span class="code-string">"Full Stack Debug"</span>,
@@ -2017,6 +2240,7 @@ count = <span class="code-number">100</span></code></pre>
     }
   ]
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Compounds</span><span class="tag tag--">Full Stack</span>
@@ -2045,7 +2269,18 @@ count = <span class="code-number">100</span></code></pre>
     <div class="label" style="color: var(--color-success);">FULL WORKFLOW</div>
     <h2>Complete One-Click Setup</h2>
     
-    <pre style="max-width: 900px;"><code>// tasks.json
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+        <svg class="copy-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+      <pre style="max-width: 900px;"><code>// tasks.json
 {
   <span class="code-string">"tasks"</span>: [
     {
@@ -2099,6 +2334,7 @@ count = <span class="code-number">100</span></code></pre>
     }
   ]
 }</code></pre>
+    </div>
     
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Complete</span><span class="tag tag--">Workflow</span>
@@ -2163,49 +2399,49 @@ count = <span class="code-number">100</span></code></pre>
     
     <div class="task-grid">
       
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Python Debug Configuration Types')">
         <div class="task-number">1</div>
         <div class="task-title">Basics</div>
         <div class="task-desc">Python file, module, pytest, Django configs</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Frontend Debugging Options')">
         <div class="task-number">2</div>
         <div class="task-title">Frontend</div>
         <div class="task-desc">Chrome, Node.js, Electron debugging</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Debug Control Keys')">
         <div class="task-number">3</div>
         <div class="task-title">Controls</div>
         <div class="task-desc">F5/F10/F11, breakpoints, debug actions</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Understanding the Variables Panel')">
         <div class="task-number">4</div>
         <div class="task-title">Variables</div>
         <div class="task-desc">Watch, call stack, debug console</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('The Modern Python Environment')">
         <div class="task-number">5</div>
         <div class="task-title">Part 1</div>
         <div class="task-desc">Modern Python env with uv</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('Anatomy of tasks.json')">
         <div class="task-number">6</div>
         <div class="task-title">Part 2</div>
         <div class="task-desc">tasks.json, isBackground, problemMatchers</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('The \'Remote Attach\' Pattern')">
         <div class="task-number">7</div>
         <div class="task-title">Part 3</div>
         <div class="task-desc">Remote Attach with debugpy</div>
         
       </div>
-      <div class="task-card">
+      <div class="task-card clickable" onclick="navigateToSlide('The One-Click Workflow')">
         <div class="task-number">8</div>
         <div class="task-title">Part 4</div>
         <div class="task-desc">Compounds, preLaunchTask, stopAll</div>
@@ -2575,6 +2811,43 @@ count = <span class="code-number">100</span></code></pre>
         }
       }
     });
+
+    // Copy code functionality
+    function copyCode(btn) {
+      const codeContainer = btn.closest('.code-container');
+      const codeElement = codeContainer.querySelector('code');
+      const text = codeElement.textContent;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.querySelector('.copy-icon').style.display = 'none';
+        btn.querySelector('.check-icon').style.display = 'block';
+        btn.querySelector('.copy-text').textContent = 'Copied!';
+
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.querySelector('.copy-icon').style.display = 'block';
+          btn.querySelector('.check-icon').style.display = 'none';
+          btn.querySelector('.copy-text').textContent = 'Copy';
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
+
+    // Navigate to slide by title
+    function navigateToSlide(title) {
+      // Find slide with matching h2 title
+      const slides = document.querySelectorAll('.slide');
+      for (const slide of slides) {
+        const heading = slide.querySelector('h2');
+        if (heading && heading.textContent.trim() === title) {
+          slide.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+      }
+      console.warn('Slide not found:', title);
+    }
   </script>
 
 </body>

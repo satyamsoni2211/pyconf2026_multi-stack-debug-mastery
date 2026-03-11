@@ -51,12 +51,12 @@
       "title": "What You'll Master",
       "body": "By the end of this workshop, you'll be able to:",
       "items": [
-        { "number": "01", "title": "Python Debug Configs", "desc": "Configure launch.json for files, modules, pytest", "tags": [{ "text": "VS Code" }, { "text": "Python" }] },
-        { "number": "02", "title": "Frontend Debug", "desc": "Debug JavaScript/TypeScript in Chrome and Electron", "tags": [{ "text": "Chrome" }, { "text": "DevTools" }] },
-        { "number": "03", "title": "Debug Controls", "desc": "Master breakpoints, stepping, and debugging actions", "tags": [{ "text": "Controls" }, { "text": "F5/F10/F11" }] },
-        { "number": "04", "title": "Variable Viewer", "desc": "Inspect locals, globals, and watch expressions", "tags": [{ "text": "Variables" }, { "text": "Watch" }] },
-        { "number": "05", "title": "Orchestrate Tasks", "desc": "Automate services with tasks.json", "tags": [{ "text": "Tasks" }, { "text": "Automation" }] },
-        { "number": "06", "title": "Remote Attach", "desc": "Debug Python apps on specific ports with debugpy", "tags": [{ "text": "debugpy" }, { "text": "Attach" }] }
+        { "number": "01", "title": "Python Debug Configs", "desc": "Configure launch.json for files, modules, pytest", "tags": [{ "text": "VS Code" }, { "text": "Python" }], "target": "Python Debug Configuration Types" },
+        { "number": "02", "title": "Frontend Debug", "desc": "Debug JavaScript/TypeScript in Chrome and Electron", "tags": [{ "text": "Chrome" }, { "text": "DevTools" }], "target": "Frontend Debugging Options" },
+        { "number": "03", "title": "Debug Controls", "desc": "Master breakpoints, stepping, and debugging actions", "tags": [{ "text": "Controls" }, { "text": "F5/F10/F11" }], "target": "Debug Control Keys" },
+        { "number": "04", "title": "Variable Viewer", "desc": "Inspect locals, globals, and watch expressions", "tags": [{ "text": "Variables" }, { "text": "Watch" }], "target": "Understanding the Variables Panel" },
+        { "number": "05", "title": "Orchestrate Tasks", "desc": "Automate services with tasks.json", "tags": [{ "text": "Tasks" }, { "text": "Automation" }], "target": "Anatomy of tasks.json" },
+        { "number": "06", "title": "Remote Attach", "desc": "Debug Python apps on specific ports with debugpy", "tags": [{ "text": "debugpy" }, { "text": "Attach" }], "target": "Remote Attach Configuration" }
       ]
     },
     {
@@ -86,12 +86,12 @@
       "label": "DEBUG TYPES",
       "title": "Python Debug Configuration Types",
       "items": [
-        { "number": "1", "title": "Python File", "desc": "Debug a standalone Python script" },
-        { "number": "2", "title": "Python Module", "desc": "Debug a module: python -m module" },
-        { "number": "3", "title": "Pytest", "desc": "Debug pytest tests" },
-        { "number": "4", "title": "Django", "desc": "Debug Django applications" },
+        { "number": "1", "title": "Python File", "desc": "Debug a standalone Python script", "target": "Debug a Python File" },
+        { "number": "2", "title": "Python Module", "desc": "Debug a module: python -m module", "target": "Debug a Python Module" },
+        { "number": "3", "title": "Pytest", "desc": "Debug pytest tests", "target": "Debug pytest Tests" },
+        { "number": "4", "title": "Django", "desc": "Debug Django applications", "target": "Debug Django Application" },
         { "number": "5", "title": "Flask", "desc": "Debug Flask applications" },
-        { "number": "6", "title": "Remote Attach", "desc": "Attach to running Python process" }
+        { "number": "6", "title": "Remote Attach", "desc": "Attach to running Python process", "target": "Remote Attach Configuration" }
       ]
     },
     {
@@ -795,14 +795,14 @@
       "label": "SUMMARY",
       "title": "What We Covered",
       "items": [
-        { "number": "1", "title": "Basics", "desc": "Python file, module, pytest, Django configs" },
-        { "number": "2", "title": "Frontend", "desc": "Chrome, Node.js, Electron debugging" },
-        { "number": "3", "title": "Controls", "desc": "F5/F10/F11, breakpoints, debug actions" },
-        { "number": "4", "title": "Variables", "desc": "Watch, call stack, debug console" },
-        { "number": "5", "title": "Part 1", "desc": "Modern Python env with uv" },
-        { "number": "6", "title": "Part 2", "desc": "tasks.json, isBackground, problemMatchers" },
-        { "number": "7", "title": "Part 3", "desc": "Remote Attach with debugpy" },
-        { "number": "8", "title": "Part 4", "desc": "Compounds, preLaunchTask, stopAll" }
+        { "number": "1", "title": "Basics", "desc": "Python file, module, pytest, Django configs", "target": "Python Debug Configuration Types" },
+        { "number": "2", "title": "Frontend", "desc": "Chrome, Node.js, Electron debugging", "target": "Frontend Debugging Options" },
+        { "number": "3", "title": "Controls", "desc": "F5/F10/F11, breakpoints, debug actions", "target": "Debug Control Keys" },
+        { "number": "4", "title": "Variables", "desc": "Watch, call stack, debug console", "target": "Understanding the Variables Panel" },
+        { "number": "5", "title": "Part 1", "desc": "Modern Python env with uv", "target": "The Modern Python Environment" },
+        { "number": "6", "title": "Part 2", "desc": "tasks.json, isBackground, problemMatchers", "target": "Anatomy of tasks.json" },
+        { "number": "7", "title": "Part 3", "desc": "Remote Attach with debugpy", "target": "The 'Remote Attach' Pattern" },
+        { "number": "8", "title": "Part 4", "desc": "Compounds, preLaunchTask, stopAll", "target": "The One-Click Workflow" }
       ]
     },
     {
