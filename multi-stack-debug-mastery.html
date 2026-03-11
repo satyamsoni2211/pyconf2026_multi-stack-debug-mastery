@@ -819,6 +819,7 @@ li::marker {
     <a href="#slide-62" class="nav-dot"></a>
     <a href="#slide-63" class="nav-dot"></a>
     <a href="#slide-64" class="nav-dot"></a>
+    <a href="#slide-65" class="nav-dot"></a>
 
   </nav>
 
@@ -829,11 +830,40 @@ li::marker {
     <h1>Multi-Stack Debug Mastery</h1>
     <p class="subtitle">Orchestrating VS Code for Python + Frontend Development</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">1 / 64</div>
+    <div class="slide-number">1 / 65</div>
   </section>
 
 
-  <section id="slide-2" class="slide slide--light">
+  <section id="slide-2" class="slide slide--dark centered">
+    <div class="label" style="color: var(--color-secondary);">GET STARTED</div>
+    <div style="margin-top: 2rem;">
+      <svg viewBox="0 0 24 24" width="80" height="80" fill="var(--color-background)">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+    </div>
+    <h2 style="margin-top: 1.5rem; color: var(--color-background);">Clone the Workshop Repo</h2>
+    <p style="color: rgba(255,255,255,0.8); font-size: 1.3rem; margin-top: 1rem;">Follow along with all the code examples and configurations</p>
+    <a href="https://github.com/satyamsoni2211/pyconf2026_multi-stack-debug-mastery" target="_blank" rel="noopener noreferrer" class="repo-link" style="
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: var(--color-background);
+      color: var(--color-primary);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      border: 3px solid var(--color-secondary);
+      transition: transform 0.2s, box-shadow 0.2s;
+    " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 0 var(--color-secondary)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';">
+      https://github.com/satyamsoni2211/pyconf2026_multi-stack-debug-mastery
+    </a>
+    <div class="slide-number" style="color: rgba(255,255,255,0.5);">2 / 65</div>
+  </section>
+
+
+  <section id="slide-3" class="slide slide--light">
     <div class="label">INTRODUCTION</div>
     <h2>The Debugging Challenge</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">In the era of microservices and full-stack applications, debugging in isolation is rarely enough.</p>
@@ -845,22 +875,22 @@ li::marker {
       <li>Manual process management = wasted time</li>
     </ul>
     
-    <div class="slide-number">2 / 64</div>
+    <div class="slide-number">3 / 65</div>
   </section>
 
 
-  <section id="slide-3" class="slide slide--secondary centered">
+  <section id="slide-4" class="slide slide--secondary centered">
     <div class="ascii-border" style="font-size: 2rem; margin-bottom: 1rem;">╔══════════════════════════════════════╗</div>
     <blockquote style="font-size: 2rem; font-style: italic; max-width: 800px; line-height: 1.4;">
       "The best debugging tool is still careful thought, coupled with well-designed code."
     </blockquote>
     <div class="ascii-border" style="font-size: 2rem; margin-top: 1rem;">╚══════════════════════════════════════╝</div>
     <p style="margin-top: 2rem; font-family: var(--font-mono);">— Brian Kernighan</p>
-    <div class="slide-number">3 / 64</div>
+    <div class="slide-number">4 / 65</div>
   </section>
 
 
-  <section id="slide-4" class="slide slide--light centered">
+  <section id="slide-5" class="slide slide--light centered">
     
     <h2>Workshop Timeline (90 minutes)</h2>
     <div class="stats-row">
@@ -891,11 +921,11 @@ li::marker {
       </div>
     </div>
     <p class="subtitle" style="margin-top: 2rem;">Intro → Part 1 → Part 2 → Part 3 → Part 4 → Q&A</p>
-    <div class="slide-number">4 / 64</div>
+    <div class="slide-number">5 / 65</div>
   </section>
 
 
-  <section id="slide-5" class="slide slide--light">
+  <section id="slide-6" class="slide slide--light">
     <div class="label">LEARNING OBJECTIVES</div>
     <h2>What You'll Master</h2>
     <p style="font-size: 1.2rem; max-width: 700px;">By the end of this workshop, you'll be able to:</p>
@@ -956,20 +986,20 @@ li::marker {
         </div>
       </div>
     </div>
-    <div class="slide-number">5 / 64</div>
+    <div class="slide-number">6 / 65</div>
   </section>
 
 
-  <section id="slide-6" class="slide slide--accent">
+  <section id="slide-7" class="slide slide--accent">
     <div class="label">BASICS</div>
     <h1>Python Debugging Setup</h1>
     <p class="subtitle">launch.json Configuration</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">6 / 64</div>
+    <div class="slide-number">7 / 65</div>
   </section>
 
 
-  <section id="slide-7" class="slide slide--light">
+  <section id="slide-8" class="slide slide--light">
     <div class="label">PYTHON DEBUGGING</div>
     <h2>Getting Started with Python Debugging</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">VS Code provides powerful Python debugging through the Python extension:</p>
@@ -981,11 +1011,11 @@ li::marker {
       <li>Press F5 to start debugging</li>
     </ul>
     
-    <div class="slide-number">7 / 64</div>
+    <div class="slide-number">8 / 65</div>
   </section>
 
 
-  <section id="slide-8" class="slide slide--light">
+  <section id="slide-9" class="slide slide--light">
     <div class="label">DEBUG TYPES</div>
     <h2>Python Debug Configuration Types</h2>
     
@@ -1028,11 +1058,11 @@ li::marker {
         
       </div>
     </div>
-    <div class="slide-number">8 / 64</div>
+    <div class="slide-number">9 / 65</div>
   </section>
 
 
-  <section id="slide-9" class="slide slide--dark">
+  <section id="slide-10" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">PYTHON FILE</div>
     <h2>Debug a Python File</h2>
     
@@ -1063,11 +1093,11 @@ li::marker {
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">launch.json</span><span class="tag tag--">Python File</span>
     </div>
-    <div class="slide-number">9 / 64</div>
+    <div class="slide-number">10 / 65</div>
   </section>
 
 
-  <section id="slide-10" class="slide slide--dark">
+  <section id="slide-11" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">PYTHON MODULE</div>
     <h2>Debug a Python Module</h2>
     
@@ -1100,11 +1130,11 @@ li::marker {
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">module</span><span class="tag tag--">fastapi</span>
     </div>
-    <div class="slide-number">10 / 64</div>
+    <div class="slide-number">11 / 65</div>
   </section>
 
 
-  <section id="slide-11" class="slide slide--dark">
+  <section id="slide-12" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">PYTEST DEBUG</div>
     <h2>Debug pytest Tests</h2>
     
@@ -1140,11 +1170,11 @@ li::marker {
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">pytest</span><span class="tag tag--">Testing</span>
     </div>
-    <div class="slide-number">11 / 64</div>
+    <div class="slide-number">12 / 65</div>
   </section>
 
 
-  <section id="slide-12" class="slide slide--dark">
+  <section id="slide-13" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">DJANGO DEBUG</div>
     <h2>Debug Django Application</h2>
     
@@ -1179,20 +1209,20 @@ li::marker {
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Django</span><span class="tag tag--">Web Framework</span>
     </div>
-    <div class="slide-number">12 / 64</div>
+    <div class="slide-number">13 / 65</div>
   </section>
 
 
-  <section id="slide-13" class="slide slide--accent">
+  <section id="slide-14" class="slide slide--accent">
     <div class="label">FRONTEND</div>
     <h1>Frontend Debugging</h1>
     <p class="subtitle">JavaScript & Browser Debugging</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">13 / 64</div>
+    <div class="slide-number">14 / 65</div>
   </section>
 
 
-  <section id="slide-14" class="slide slide--light">
+  <section id="slide-15" class="slide slide--light">
     <div class="label">FRONTEND DEBUG</div>
     <h2>Frontend Debugging Options</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">VS Code supports multiple frontend debugging scenarios:</p>
@@ -1205,11 +1235,11 @@ li::marker {
       <li>Attach to running browser sessions</li>
     </ul>
     
-    <div class="slide-number">14 / 64</div>
+    <div class="slide-number">15 / 65</div>
   </section>
 
 
-  <section id="slide-15" class="slide slide--dark">
+  <section id="slide-16" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">CHROME LAUNCH</div>
     <h2>Launch Chrome for Debugging</h2>
     
@@ -1241,11 +1271,11 @@ li::marker {
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Chrome</span><span class="tag tag--">Launch</span>
     </div>
-    <div class="slide-number">15 / 64</div>
+    <div class="slide-number">16 / 65</div>
   </section>
 
 
-  <section id="slide-16" class="slide slide--dark">
+  <section id="slide-17" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">CHROME ATTACH</div>
     <h2>Attach to Running Chrome</h2>
     
@@ -1277,11 +1307,11 @@ li::marker {
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Chrome</span><span class="tag tag--">Attach</span>
     </div>
-    <div class="slide-number">16 / 64</div>
+    <div class="slide-number">17 / 65</div>
   </section>
 
 
-  <section id="slide-17" class="slide slide--dark">
+  <section id="slide-18" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">NODE DEBUG</div>
     <h2>Debug Node.js Application</h2>
     
@@ -1319,11 +1349,11 @@ li::marker {
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Node.js</span><span class="tag tag--">Server</span>
     </div>
-    <div class="slide-number">17 / 64</div>
+    <div class="slide-number">18 / 65</div>
   </section>
 
 
-  <section id="slide-18" class="slide slide--dark">
+  <section id="slide-19" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">ELECTRON DEBUG</div>
     <h2>Debug Electron Application</h2>
     
@@ -1359,20 +1389,20 @@ li::marker {
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Electron</span><span class="tag tag--">Desktop</span>
     </div>
-    <div class="slide-number">18 / 64</div>
+    <div class="slide-number">19 / 65</div>
   </section>
 
 
-  <section id="slide-19" class="slide slide--accent">
+  <section id="slide-20" class="slide slide--accent">
     <div class="label">CONTROLS</div>
     <h1>Debugging Controls</h1>
     <p class="subtitle">Mastering the Debugger</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">19 / 64</div>
+    <div class="slide-number">20 / 65</div>
   </section>
 
 
-  <section id="slide-20" class="slide slide--light">
+  <section id="slide-21" class="slide slide--light">
     <div class="label">KEYBOARD SHORTCUTS</div>
     <h2>Debug Control Keys</h2>
     
@@ -1415,11 +1445,11 @@ li::marker {
         
       </div>
     </div>
-    <div class="slide-number">20 / 64</div>
+    <div class="slide-number">21 / 65</div>
   </section>
 
 
-  <section id="slide-21" class="slide slide--light">
+  <section id="slide-22" class="slide slide--light">
     <div class="label">BREAKPOINT TYPES</div>
     <h2>Types of Breakpoints</h2>
     <div class="two-col" style="margin-top: 2rem;">
@@ -1449,11 +1479,11 @@ li::marker {
         
       </div>
     </div>
-    <div class="slide-number">21 / 64</div>
+    <div class="slide-number">22 / 65</div>
   </section>
 
 
-  <section id="slide-22" class="slide slide--dark">
+  <section id="slide-23" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">CONDITIONAL BP</div>
     <h2>Conditional Breakpoints</h2>
     
@@ -1485,11 +1515,11 @@ user.is_admin == true
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Conditional</span><span class="tag tag--">Breakpoints</span>
     </div>
-    <div class="slide-number">22 / 64</div>
+    <div class="slide-number">23 / 65</div>
   </section>
 
 
-  <section id="slide-23" class="slide slide--light">
+  <section id="slide-24" class="slide slide--light">
     <div class="label">DEBUG ACTIONS</div>
     <h2>Debug Toolbar Actions</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">The debug toolbar provides essential controls:</p>
@@ -1503,20 +1533,20 @@ user.is_admin == true
       <li>Stop (Shift+F5) - End debugging</li>
     </ul>
     
-    <div class="slide-number">23 / 64</div>
+    <div class="slide-number">24 / 65</div>
   </section>
 
 
-  <section id="slide-24" class="slide slide--accent">
+  <section id="slide-25" class="slide slide--accent">
     <div class="label">VARIABLES</div>
     <h1>Variable Viewer</h1>
     <p class="subtitle">Inspecting Application State</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">24 / 64</div>
+    <div class="slide-number">25 / 65</div>
   </section>
 
 
-  <section id="slide-25" class="slide slide--light">
+  <section id="slide-26" class="slide slide--light">
     <div class="label">VARIABLES PANEL</div>
     <h2>Understanding the Variables Panel</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">The Variables panel shows current scope state:</p>
@@ -1529,11 +1559,11 @@ user.is_admin == true
       <li>Right-click to copy values</li>
     </ul>
     
-    <div class="slide-number">25 / 64</div>
+    <div class="slide-number">26 / 65</div>
   </section>
 
 
-  <section id="slide-26" class="slide slide--light">
+  <section id="slide-27" class="slide slide--light">
     <div class="label">WATCH EXPRESSIONS</div>
     <h2>Using Watch Expressions</h2>
     <div class="two-col" style="margin-top: 2rem;">
@@ -1563,11 +1593,11 @@ user.is_admin == true
         
       </div>
     </div>
-    <div class="slide-number">26 / 64</div>
+    <div class="slide-number">27 / 65</div>
   </section>
 
 
-  <section id="slide-27" class="slide slide--light">
+  <section id="slide-28" class="slide slide--light">
     <div class="label">CALL STACK</div>
     <h2>The Call Stack Panel</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">The call stack shows execution history:</p>
@@ -1580,11 +1610,11 @@ user.is_admin == true
       <li>Expand to see thread info</li>
     </ul>
     
-    <div class="slide-number">27 / 64</div>
+    <div class="slide-number">28 / 65</div>
   </section>
 
 
-  <section id="slide-28" class="slide slide--light">
+  <section id="slide-29" class="slide slide--light">
     <div class="label">DEBUG CONSOLE</div>
     <h2>Debug Console</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Execute code in the debug context:</p>
@@ -1597,11 +1627,11 @@ user.is_admin == true
       <li>Temporary debugging code</li>
     </ul>
     
-    <div class="slide-number">28 / 64</div>
+    <div class="slide-number">29 / 65</div>
   </section>
 
 
-  <section id="slide-29" class="slide slide--dark">
+  <section id="slide-30" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">DEBUG CONSOLE</div>
     <h2>Debug Console Examples</h2>
     
@@ -1638,20 +1668,20 @@ count = <span class="code-number">100</span></code></pre>
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Debug Console</span><span class="tag tag--">REPL</span>
     </div>
-    <div class="slide-number">29 / 64</div>
+    <div class="slide-number">30 / 65</div>
   </section>
 
 
-  <section id="slide-30" class="slide slide--accent">
+  <section id="slide-31" class="slide slide--accent">
     <div class="label">PART 1</div>
     <h1>The Modern Python Environment</h1>
     <p class="subtitle">15 minutes</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">30 / 64</div>
+    <div class="slide-number">31 / 65</div>
   </section>
 
 
-  <section id="slide-31" class="slide slide--light">
+  <section id="slide-32" class="slide slide--light">
     <div class="label">PART 1</div>
     <h2>Multi-Directory Project Structure</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Real-world projects span multiple directories:</p>
@@ -1663,11 +1693,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Each with its own package manager</li>
     </ul>
     
-    <div class="slide-number">31 / 64</div>
+    <div class="slide-number">32 / 65</div>
   </section>
 
 
-  <section id="slide-32" class="slide slide--muted">
+  <section id="slide-33" class="slide slide--muted">
     <div class="label">PROJECT STRUCTURE</div>
     <h2>Typical Monorepo Layout</h2>
     <div class="terminal" style="max-width: 800px; margin-top: 2rem;">
@@ -1689,11 +1719,11 @@ count = <span class="code-number">100</span></code></pre>
       </div>
     </div>
     
-    <div class="slide-number">32 / 64</div>
+    <div class="slide-number">33 / 65</div>
   </section>
 
 
-  <section id="slide-33" class="slide slide--light">
+  <section id="slide-34" class="slide slide--light">
     <div class="label">UV - MODERN PYTHON</div>
     <h2>Why uv?</h2>
     <div class="two-col" style="margin-top: 2rem;">
@@ -1723,11 +1753,11 @@ count = <span class="code-number">100</span></code></pre>
         
       </div>
     </div>
-    <div class="slide-number">33 / 64</div>
+    <div class="slide-number">34 / 65</div>
   </section>
 
 
-  <section id="slide-34" class="slide slide--muted">
+  <section id="slide-35" class="slide slide--muted">
     <div class="label">UV SETUP</div>
     <h2>Installing and Using uv</h2>
     <div class="terminal" style="max-width: 800px; margin-top: 2rem;">
@@ -1748,11 +1778,11 @@ count = <span class="code-number">100</span></code></pre>
       </div>
     </div>
     
-    <div class="slide-number">34 / 64</div>
+    <div class="slide-number">35 / 65</div>
   </section>
 
 
-  <section id="slide-35" class="slide slide--light">
+  <section id="slide-36" class="slide slide--light">
     <div class="label">EXERCISE 1</div>
     <h2>Exercise: Create a Basic Task</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Let's create a VS Code task to run FastAPI via uv run:</p>
@@ -1764,11 +1794,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Test running it with Tasks: Run Task</li>
     </ul>
     
-    <div class="slide-number">35 / 64</div>
+    <div class="slide-number">36 / 65</div>
   </section>
 
 
-  <section id="slide-36" class="slide slide--dark">
+  <section id="slide-37" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">TASKS.JSON EXAMPLE</div>
     <h2>Basic FastAPI Task</h2>
     
@@ -1804,20 +1834,20 @@ count = <span class="code-number">100</span></code></pre>
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">tasks.json</span><span class="tag tag--">FastAPI</span>
     </div>
-    <div class="slide-number">36 / 64</div>
+    <div class="slide-number">37 / 65</div>
   </section>
 
 
-  <section id="slide-37" class="slide slide--accent">
+  <section id="slide-38" class="slide slide--accent">
     <div class="label">PART 2</div>
     <h1>Bridging the Gap with Tasks</h1>
     <p class="subtitle">15 minutes</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">37 / 64</div>
+    <div class="slide-number">38 / 65</div>
   </section>
 
 
-  <section id="slide-38" class="slide slide--light">
+  <section id="slide-39" class="slide slide--light">
     <div class="label">TASKS.JSON</div>
     <h2>Anatomy of tasks.json</h2>
     
@@ -1854,11 +1884,11 @@ count = <span class="code-number">100</span></code></pre>
         
       </div>
     </div>
-    <div class="slide-number">38 / 64</div>
+    <div class="slide-number">39 / 65</div>
   </section>
 
 
-  <section id="slide-39" class="slide slide--dark">
+  <section id="slide-40" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">BACKGROUND TASKS</div>
     <h2>Using isBackground: true</h2>
     
@@ -1899,11 +1929,11 @@ count = <span class="code-number">100</span></code></pre>
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">isBackground</span><span class="tag tag--">Vite</span>
     </div>
-    <div class="slide-number">39 / 64</div>
+    <div class="slide-number">40 / 65</div>
   </section>
 
 
-  <section id="slide-40" class="slide slide--light">
+  <section id="slide-41" class="slide slide--light">
     <div class="label">PROBLEM MATCHERS</div>
     <h2>What Are Problem Matchers?</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Problem matchers parse CLI output to:</p>
@@ -1915,11 +1945,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Provide visual feedback in VS Code</li>
     </ul>
     
-    <div class="slide-number">40 / 64</div>
+    <div class="slide-number">41 / 65</div>
   </section>
 
 
-  <section id="slide-41" class="slide slide--muted">
+  <section id="slide-42" class="slide slide--muted">
     <div class="label">PROBLEM MATCHER SIGNALS</div>
     <h2>Common Ready Signals</h2>
     <div class="terminal" style="max-width: 800px; margin-top: 2rem;">
@@ -1940,11 +1970,11 @@ count = <span class="code-number">100</span></code></pre>
       </div>
     </div>
     
-    <div class="slide-number">41 / 64</div>
+    <div class="slide-number">42 / 65</div>
   </section>
 
 
-  <section id="slide-42" class="slide slide--dark">
+  <section id="slide-43" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">REGEX PATTERNS</div>
     <h2>Crafting Regex for ProblemMatcher</h2>
     
@@ -1979,11 +2009,11 @@ count = <span class="code-number">100</span></code></pre>
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Regex</span><span class="tag tag--">Pattern</span>
     </div>
-    <div class="slide-number">42 / 64</div>
+    <div class="slide-number">43 / 65</div>
   </section>
 
 
-  <section id="slide-43" class="slide slide--light">
+  <section id="slide-44" class="slide slide--light">
     <div class="label">EXERCISE 2</div>
     <h2>Exercise: Background Task with Matcher</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Create a background task that:</p>
@@ -1995,11 +2025,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Practice with regex pattern matching</li>
     </ul>
     
-    <div class="slide-number">43 / 64</div>
+    <div class="slide-number">44 / 65</div>
   </section>
 
 
-  <section id="slide-44" class="slide slide--light">
+  <section id="slide-45" class="slide slide--light">
     <div class="label">TASK CHAINING</div>
     <h2>Task Dependencies</h2>
     <div class="two-col" style="margin-top: 2rem;">
@@ -2012,20 +2042,20 @@ count = <span class="code-number">100</span></code></pre>
         <p style="margin-top: 0.5rem;">+ Automatic startup sequence</p><p style="margin-top: 0.5rem;">+ Problem matcher ensures ready</p><p style="margin-top: 0.5rem;">+ No race conditions</p><p style="margin-top: 0.5rem;">+ One-click full stack start</p>
       </div>
     </div>
-    <div class="slide-number">44 / 64</div>
+    <div class="slide-number">45 / 65</div>
   </section>
 
 
-  <section id="slide-45" class="slide slide--accent">
+  <section id="slide-46" class="slide slide--accent">
     <div class="label">PART 3</div>
     <h1>The 'Remote Attach' Pattern</h1>
     <p class="subtitle">15 minutes</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">45 / 64</div>
+    <div class="slide-number">46 / 65</div>
   </section>
 
 
-  <section id="slide-46" class="slide slide--light">
+  <section id="slide-47" class="slide slide--light">
     <div class="label">ATTACH VS LAUNCH</div>
     <h2>Why Attach > Launch?</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">For complex managed environments, Attach is superior:</p>
@@ -2038,11 +2068,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Debug production-like environments</li>
     </ul>
     
-    <div class="slide-number">46 / 64</div>
+    <div class="slide-number">47 / 65</div>
   </section>
 
 
-  <section id="slide-47" class="slide slide--muted">
+  <section id="slide-48" class="slide slide--muted">
     <div class="label">DEBUGPY SETUP</div>
     <h2>Starting FastAPI with debugpy</h2>
     <div class="terminal" style="max-width: 800px; margin-top: 2rem;">
@@ -2062,11 +2092,11 @@ count = <span class="code-number">100</span></code></pre>
       </div>
     </div>
     
-    <div class="slide-number">47 / 64</div>
+    <div class="slide-number">48 / 65</div>
   </section>
 
 
-  <section id="slide-48" class="slide slide--dark">
+  <section id="slide-49" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">LAUNCH.JSON</div>
     <h2>Remote Attach Configuration</h2>
     
@@ -2102,11 +2132,11 @@ count = <span class="code-number">100</span></code></pre>
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">debugpy</span><span class="tag tag--">Attach</span>
     </div>
-    <div class="slide-number">48 / 64</div>
+    <div class="slide-number">49 / 65</div>
   </section>
 
 
-  <section id="slide-49" class="slide slide--light">
+  <section id="slide-50" class="slide slide--light">
     <div class="label">PATH MAPPINGS</div>
     <h2>Understanding pathMappings</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">pathMappings bridges local and remote file systems:</p>
@@ -2118,11 +2148,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Essential for Docker/remote development</li>
     </ul>
     
-    <div class="slide-number">49 / 64</div>
+    <div class="slide-number">50 / 65</div>
   </section>
 
 
-  <section id="slide-50" class="slide slide--light">
+  <section id="slide-51" class="slide slide--light">
     <div class="label">PORT SELECTION</div>
     <h2>Choosing the Right Port</h2>
     <div class="two-col" style="margin-top: 2rem;">
@@ -2152,11 +2182,11 @@ count = <span class="code-number">100</span></code></pre>
         
       </div>
     </div>
-    <div class="slide-number">50 / 64</div>
+    <div class="slide-number">51 / 65</div>
   </section>
 
 
-  <section id="slide-51" class="slide slide--light">
+  <section id="slide-52" class="slide slide--light">
     <div class="label">EXERCISE 3</div>
     <h2>Exercise: Remote Attach Setup</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Configure remote attach debugging:</p>
@@ -2168,20 +2198,20 @@ count = <span class="code-number">100</span></code></pre>
       <li>Attach and set a breakpoint</li>
     </ul>
     
-    <div class="slide-number">51 / 64</div>
+    <div class="slide-number">52 / 65</div>
   </section>
 
 
-  <section id="slide-52" class="slide slide--accent">
+  <section id="slide-53" class="slide slide--accent">
     <div class="label">PART 4</div>
     <h1>The One-Click Workflow</h1>
     <p class="subtitle">20 minutes</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">52 / 64</div>
+    <div class="slide-number">53 / 65</div>
   </section>
 
 
-  <section id="slide-53" class="slide slide--light">
+  <section id="slide-54" class="slide slide--light">
     <div class="label">COMPOUND CONFIGURATIONS</div>
     <h2>What Are Compounds?</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Compounds let you launch multiple debug configurations at once:</p>
@@ -2193,11 +2223,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Single stop terminates all</li>
     </ul>
     
-    <div class="slide-number">53 / 64</div>
+    <div class="slide-number">54 / 65</div>
   </section>
 
 
-  <section id="slide-54" class="slide slide--dark">
+  <section id="slide-55" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">COMPOUND EXAMPLE</div>
     <h2>Creating a Compound Config</h2>
     
@@ -2245,11 +2275,11 @@ count = <span class="code-number">100</span></code></pre>
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Compounds</span><span class="tag tag--">Full Stack</span>
     </div>
-    <div class="slide-number">54 / 64</div>
+    <div class="slide-number">55 / 65</div>
   </section>
 
 
-  <section id="slide-55" class="slide slide--light">
+  <section id="slide-56" class="slide slide--light">
     <div class="label">PRELAUNCH TASK</div>
     <h2>The preLaunchTask Property</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">preLaunchTask runs a task before debugging starts:</p>
@@ -2261,11 +2291,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Ensure dependencies are running</li>
     </ul>
     
-    <div class="slide-number">55 / 64</div>
+    <div class="slide-number">56 / 65</div>
   </section>
 
 
-  <section id="slide-56" class="slide slide--dark">
+  <section id="slide-57" class="slide slide--dark">
     <div class="label" style="color: var(--color-success);">FULL WORKFLOW</div>
     <h2>Complete One-Click Setup</h2>
     
@@ -2339,11 +2369,11 @@ count = <span class="code-number">100</span></code></pre>
     <div style="margin-top: 1.5rem;">
       <span class="tag tag--">Complete</span><span class="tag tag--">Workflow</span>
     </div>
-    <div class="slide-number">56 / 64</div>
+    <div class="slide-number">57 / 65</div>
   </section>
 
 
-  <section id="slide-57" class="slide slide--light">
+  <section id="slide-58" class="slide slide--light">
     <div class="label">STOPALL</div>
     <h2>Understanding stopAll: true</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">When you stop debugging:</p>
@@ -2355,11 +2385,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Essential for background tasks</li>
     </ul>
     
-    <div class="slide-number">57 / 64</div>
+    <div class="slide-number">58 / 65</div>
   </section>
 
 
-  <section id="slide-58" class="slide slide--light">
+  <section id="slide-59" class="slide slide--light">
     <div class="label">BEFORE VS AFTER</div>
     <h2>The Transformation</h2>
     <div class="two-col" style="margin-top: 2rem;">
@@ -2372,11 +2402,11 @@ count = <span class="code-number">100</span></code></pre>
         <p style="margin-top: 0.5rem;">+ One click starts all</p><p style="margin-top: 0.5rem;">+ Automatic ordering</p><p style="margin-top: 0.5rem;">+ Problem matchers ensure ready</p><p style="margin-top: 0.5rem;">+ Unified debugger</p><p style="margin-top: 0.5rem;">+ Full stack breakpoints</p>
       </div>
     </div>
-    <div class="slide-number">58 / 64</div>
+    <div class="slide-number">59 / 65</div>
   </section>
 
 
-  <section id="slide-59" class="slide slide--light">
+  <section id="slide-60" class="slide slide--light">
     <div class="label">EXERCISE 4</div>
     <h2>Exercise: Build Your One-Click Workflow</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Create a complete debugging workflow:</p>
@@ -2389,11 +2419,11 @@ count = <span class="code-number">100</span></code></pre>
       <li>Test the one-click experience</li>
     </ul>
     
-    <div class="slide-number">59 / 64</div>
+    <div class="slide-number">60 / 65</div>
   </section>
 
 
-  <section id="slide-60" class="slide slide--light">
+  <section id="slide-61" class="slide slide--light">
     <div class="label">SUMMARY</div>
     <h2>What We Covered</h2>
     
@@ -2448,11 +2478,11 @@ count = <span class="code-number">100</span></code></pre>
         
       </div>
     </div>
-    <div class="slide-number">60 / 64</div>
+    <div class="slide-number">61 / 65</div>
   </section>
 
 
-  <section id="slide-61" class="slide slide--light">
+  <section id="slide-62" class="slide slide--light">
     <div class="label">NEXT STEPS</div>
     <h2>Continue Your Journey</h2>
     
@@ -2465,22 +2495,22 @@ count = <span class="code-number">100</span></code></pre>
       <li>Add to your project templates</li>
     </ul>
     
-    <div class="slide-number">61 / 64</div>
+    <div class="slide-number">62 / 65</div>
   </section>
 
 
-  <section id="slide-62" class="slide slide--secondary centered">
+  <section id="slide-63" class="slide slide--secondary centered">
     <div class="ascii-border" style="font-size: 2rem; margin-bottom: 1rem;">╔══════════════════════════════════════╗</div>
     <blockquote style="font-size: 2rem; font-style: italic; max-width: 800px; line-height: 1.4;">
       "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are by definition not smart enough to debug it."
     </blockquote>
     <div class="ascii-border" style="font-size: 2rem; margin-top: 1rem;">╚══════════════════════════════════════╝</div>
     <p style="margin-top: 2rem; font-family: var(--font-mono);">— Brian Kernighan</p>
-    <div class="slide-number">62 / 64</div>
+    <div class="slide-number">63 / 65</div>
   </section>
 
 
-  <section id="slide-63" class="slide slide--light">
+  <section id="slide-64" class="slide slide--light">
     <div class="label">Q&A</div>
     <h2>Questions & Hands-On Practice</h2>
     <p style="font-size: 1.3rem; max-width: 800px;">Let's apply what we've learned:</p>
@@ -2492,16 +2522,16 @@ count = <span class="code-number">100</span></code></pre>
       <li>Ask questions and share experiences</li>
     </ul>
     
-    <div class="slide-number">63 / 64</div>
+    <div class="slide-number">64 / 65</div>
   </section>
 
 
-  <section id="slide-64" class="slide slide--primary">
+  <section id="slide-65" class="slide slide--primary">
     <div class="label">THANK YOU</div>
     <h1>Multi-Stack Debug Mastery</h1>
     <p class="subtitle">Questions? | @satyamsoni2211 | PyConf 2026</p>
     <div class="footer">PyConf 2026</div>
-    <div class="slide-number">64 / 64</div>
+    <div class="slide-number">65 / 65</div>
   </section>
 
   <script>

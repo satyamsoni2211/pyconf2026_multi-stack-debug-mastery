@@ -12,6 +12,14 @@
       "footer": "PyConf 2026"
     },
     {
+      "type": "repo",
+      "bg": "primary",
+      "label": "GET STARTED",
+      "title": "Clone the Workshop Repo",
+      "body": "Follow along with all the code examples and configurations",
+      "url": "https://github.com/satyamsoni2211/pyconf2026_multi-stack-debug-mastery"
+    },
+    {
       "type": "content",
       "bg": "light",
       "label": "INTRODUCTION",
