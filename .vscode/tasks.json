@@ -23,7 +23,7 @@
     {
       "label": "Start: FastAPI (normal)",
       "type": "shell",
-      "command": "uv run fastapi dev --port 8080",
+      "command": "uv run fastapi dev --port 8081",
       "options": {
         "cwd": "${workspaceFolder}/backend"
       },
