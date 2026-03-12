@@ -1,0 +1,27 @@
+{
+  // extensions.json – Recommended VS Code Extensions
+  //
+  // Workshop: Multi-Stack Debug Mastery (PyConf 2026)
+  //
+  // When a user opens this workspace for the first time, VS Code will prompt
+  // them to install these extensions.  They can also be installed manually
+  // from the Extensions panel (Ctrl+Shift+X / Cmd+Shift+X).
+
+  "recommendations": [
+    // Python support
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "ms-python.vscode-pylance",
+
+    // Frontend / React
+    "esbenp.prettier-vscode",
+
+    // YAML support (for config files)
+    "redhat.vscode-yaml",
+
+    // utils
+    "SanaAjani.taskrunnercode",
+    "alefragnani.project-manager",
+    "rangav.vscode-thunder-client"
+  ]
+}
