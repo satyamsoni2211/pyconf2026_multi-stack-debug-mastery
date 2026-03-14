@@ -1,6 +1,7 @@
 /**
  * User Management System - Node.js Demo Script
  * A sample script with ample variables for debugging demonstration
+ * 
  */
 
 const fs = require('fs');
