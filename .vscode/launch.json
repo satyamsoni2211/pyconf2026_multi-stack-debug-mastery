@@ -69,7 +69,7 @@
       "justMyCode": true,
       "env": {
         "PYTHONPATH": "${workspaceFolder}/backend"
-      }
+      },
     },
 
     // =========================================================================
@@ -91,7 +91,7 @@
       "sourceMapPathOverrides": {
         "webpack:///./src/*": "${webRoot}/*"
       },
-      // "runtimeExecutable": "/Applications/Opera.app/Contents/MacOS/Opera",
+      "runtimeExecutable": "/Applications/Opera.app/Contents/MacOS/Opera",
       "preLaunchTask": "Start: Vite Dev Server"
     },
 

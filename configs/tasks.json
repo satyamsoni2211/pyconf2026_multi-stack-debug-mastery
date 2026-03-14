@@ -1,0 +1,79 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"path": "frontend",
+			"group": "clean",
+			"problemMatcher": [],
+			"label": "npm: install - frontend",
+			"detail": "install dependencies from package",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false,
+				"close": true
+			}
+		},
+		{
+			"type": "shell",
+			"label": "install backend dependencies",
+			"command": "uv sync",
+			"options": {
+				"cwd": "${workspaceFolder}/backend"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false,
+				"close": true
+			}
+		},
+		{
+			"label": "set up environments",
+			"dependsOn": [
+				"npm: install - frontend",
+				"install backend dependencies"
+			],
+			"dependsOrder": "parallel",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false,
+				"close": true
+			}
+			
+		},
+		{
+			"label": "Run fastapi backend server",
+			"type": "shell",
+			"command": "uv run debugpy --listen 5678 --log-to-stderr -m fastapi dev --port 8081",
+			"options": {
+				"cwd": "${workspaceFolder}/backend"
+			},
+			"problemMatcher": {
+				"owner": "fastapi-debugpy",
+				"pattern": {
+				"regexp": "^.*$",
+				"message": 0,
+				},
+				"background": {
+				"activeOnStart": true,
+				"beginsPattern": ".*FastAPI\\s+Starting development server.*",
+				"endsPattern": ".*Application startup complete.*"
+				}
+			},
+			"isBackground": true
+		}
+	]
+}
