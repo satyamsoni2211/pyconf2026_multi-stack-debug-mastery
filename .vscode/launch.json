@@ -95,6 +95,16 @@
       "preLaunchTask": "Start: Vite Dev Server"
     },
 
+    {
+      "name": "Launch Node JS Script Program",
+      "program": "${workspaceFolder}/demos/user_manager.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+
     // =========================================================================
     // 4.  Electron – Debug the Electron main process (bonus exercise)
     //
